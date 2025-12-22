@@ -1,0 +1,238 @@
+{
+    "Home": {
+      "greeting": "Pozdrav!"
+    },
+    "LangSwitch": {
+        "title": "Izaberite željeni jezik"
+      },
+      "NavData": {
+        "home": "Naslovna",
+        "about": "O meni",
+        "projects": "Projekti",
+        "contact": "Kontakt",
+        "language": "Jezik"
+      },
+      "FooterData": {
+        "privacy": "Uvjeti",
+        "complaint": "Prigovor",
+        "contact": "Kontakt",
+        "title": "Budimo u kontaktu"
+      },
+      "TypewriterEffect": {
+        "title": "Pozdrav! Ja sam Darko, React.js Developer iz Hrvatske.",
+        "description1": "Gradite",
+        "description2": "sjajne web stranice sa",
+        "description3": "Ježurkom",
+        "button1":"Kontakt",
+        "button2":"Projekti"
+      },
+      "HomeFlipWords": {
+        "title1": "bolje",
+        "title2": "brže",
+        "title3": "lijepe",
+        "title4": "moderne",
+        "description1": "Gradite",
+        "description2": "web stranice sa Ježurkom"
+      },
+      "IntroductionWrapper": {
+        "title1": "Najnoviji trendovi garantiraju",
+        "title2": "moderan",
+        "title3": "izgled i funkcionalnost",
+        "title4": "Moj pristup pri izradi",
+        "title5": "web",
+        "title6": "aplikacija i stranica"
+      },
+      "Introduction": {
+        "title1": "Poseban detalj na korisničko iskustvo",
+        "title2": "Predstavite sebe na najbolji način.",
+        "title3": "Brzina i perfomanse",
+        "title4": "Obezbedite sebi brzu i modernu web stranicu.",
+        "title5": "Vizaulni indetitet",
+        "title6": "Budite prepoznatljivi na internetu uz jedinstven dizajn.",
+        "title7": "Moderne tehnologije",
+        "title8": "Koristimo najnovije trendove iz web industrije",
+        "title9": "Komunikacija sa klijentima",
+        "title10": "U stalnom smo kontaktu sa svojim klijentima i slušamo njihove potrebe",
+        "title11": "React.js popularan Javascript framerwork",
+        "title12": "Moderan",
+        "title13": "Tailwind CSS da stranice izgledaju ljepše",
+        "title14": "Atraktivan",
+        "title15": "Brzina i perfomanse uz SSR rendering",
+        "title16": "Perfomanse",
+        "title17": "Da li nam možete pomoći oko novog sadržaja na našoj stranici?",
+        "title18": "Naravno! Tu smo da pomognemo."
+      },
+      "AnimatedPin": {
+        "description1": "Web trgovina",
+        "description2": "Izrada svjetlećih reklama",
+        "description3": "Izrada poslovnog portfolija",
+        "description4": "Vaš savjetnik za kredite",
+        "description5": "Zvanična web stranica brenda Mi-Go",
+        "description6": "Ustanova u oblasti kulture Srpski kulturni centar Vukovar"
+      },
+      "Projects": {
+        "title1": "Pogledajte neke od",
+        "title2": "naših",
+        "title3": "projekata",
+        "title4": "Možda pronađete",
+        "title5": "inspiraciju",
+        "title6": "ili ideju"
+      },
+      "Approach": {
+        "title1": "Planiranje & strategija",
+        "icon1": "Faza 1",
+        "des1": "Surađivat ćemo na kreiranju ciljeva Vaše web stranice, ciljne publike i na funkcionalnosti. Razgovarat ćemo o stvarima poput strukture stranice, navigacije i sadržaja",
+        "title2": "Razvoj & prikaz napretka",
+        "icon2": "Faza 2",
+        "des2": "Kad se dogovorimo o planu, krećem u kodiranje. Od početnih skica do uglađenog koda, obavještavam Vas o svakom koraku.",
+        "title3": "Razvoj & postvljanje na web",
+        "icon3": "Faza 3",
+        "des3": "Ovdje se događa čarolija! Na temelju odobrenog dizajna, sve ću prevesti u funkcionalni kod i izgraditi Vašu web stranicu od temelja."
+      }, 
+      "ApproachWrapper": {
+        "title1": "Moj",
+        "title2": "pristup",
+        "title3": "projektima"
+      },
+      "OutroSection": {
+        "title1": "Spremni ste podići",
+        "title2": "vašu",
+        "title3": "digitalnu prisutnost na višu razinu?",
+        "title4": "Kontaktirajte me danas i razgovarajmo o tome kako vam mogu pomoći u postizanju vaših ciljeva.",
+        "title5": "Kontakt"
+      },
+      "About": {
+        "title": "Pozdrav!",
+        "description": "Ovo je proba"
+      },
+      "AboutSection": {
+        "title1": "Stručni web razvoj za",
+        "title2": "moderna rješenja",
+        "paragraph1": "S više od 15 godina iskustva kao izvršni menadžer u oblasti trgovine i financija, uz posvećenu godinu dana u web razvoju, nudim jedinstvenu kombinaciju stručnosti.",
+        "paragraph2": "Moj čvrst temelj u izvršnom menadžmentu izbrusio je moje vještine vođenja i strateškog planiranja, omogućujući mi da postignem uspješne rezultate u poslovnom svijetu.",
+        "paragraph3": "Bio sam u vašim cipelama i razumijem potrebe tržišta, osiguravajući da mogu razumjeti i ispuniti vaše zahtjeve učinkovito.",
+        "paragraph4": "U području web razvoja, moja strast dovela me do savladavanja raznih programskih jezika i okvira, uključujući HTML5, CSS3, JavaScript, React.js, Next.js i TailwindCSS za stilizaciju.",
+        "paragraph5": "Moje znanje u ovim tehnologijama omogućuje mi stvaranje dinamičnih i interaktivnih web stranica, osiguravajući besprijekorno korisničko iskustvo koje ne samo da ispunjava, nego i nadmašuje očekivanja.",
+        "paragraph6": "Stalno tražim prilike za proširenje svog znanja i istraživanje inovativnih rješenja kako bih pružio izvanredne rezultate.",
+        "paragraph7": "Bilo da tražite vještog freelancera za rješavanje specifičnih projekata ili posvećenog partnera za unapređenje vašeg poslovanja, spreman sam za suradnju i realizaciju vaše vizije.",
+        "paragraph8": "Radimo zajedno kako bismo stvorili utjecajna i učinkovita rješenja koja zadovoljavaju sve veće zahtjeve tržišta."
+    },
+    "ContactIntro": {
+      "title": "Budimo u kontaktu",
+      "description": "Upoznajmo se i razmjenimo ideje!"
+    },
+    "ContactMe": {
+      "title1": "Hajde da pričamo!",
+      "title2": "Kako me možete kontaktirati?",
+      "title3":"Mobilni:",
+      "title4":"Budimo u kontaktu",
+      "paragraph1": "Zanima Vas kako možemo zajedno raditi na nečemu sjajnom? Bilo da imate ideju koja traži tehničku magiju ili Vam treba pomoć u razvoju web aplikacije, tu sam da pomognem!"
+    },
+    "ContactForm": {
+      "message": "Hvala Vam. Dobit ćete odgovor u što kraćem roku.",
+      "error": "Ahh, dogodila se greška. Pokušajte ponovo.",
+      "title1":"Kontakt forma",
+      "name":"Vaše ime",
+      "email": "Vaš email",
+      "message1": "Vaša poruka",
+      "placeholder1":"Kako se zovete?",
+      "placeholder2":"Koji je Vaš email?",
+      "placeholder3": "Koja je Vaša poruka?",
+      "sending":"Šaljem...",
+      "send":"Pošalji"
+    },
+    "ContactFormWrapper": {
+      "title": "Pošaljite mi poruku",
+      "paragraph1": "Odgovoriću Vam u što kraćem roku",
+      "paragraph2": "Hajde zajedno da Vas predstavimo u najboljem svjetlu"
+    },
+    "Blog": {
+      "no_blogs": "Trenutno nema blogova.",
+      "loading": "Učitavanje blogova, molimo sačekajte...",
+      "title": "Izazovi i Rješenja u Razvoju Web Aplikacija",
+      "paragraph": "Tijekom svoje karijere web developera, susretao sam se s različitim izazovima pri izradi aplikacija, bilo da se radi o problemima s dinamičkim rutiranjem, stilizacijom komponenti, ili optimizacijom performansi. Kroz rad na različitim projektima, imao sam priliku koristiti moderne tehnologije poput Next.js, React, TailwindCSS,Strapi ..., što mi je omogućilo ne samo da riješim probleme na efikasan način, već i da unaprijedim svoja znanja. U ovom blogu želim podijeliti iskustva o preprekama s kojima sam se suočio, kao i strategije koje su mi pomogle da ih prevaziđem",
+      "available": "Nema dostupnih blogova"
+    },
+    "BlogDetail": {
+      "loading": "Učitavam...",
+      "available":"Nema dostupnog sadržaja"
+    } ,
+    "CookieConsent": {
+      "text1": "Ova web stranica koristi kolačiće da poboljša vaše korisničko iskustvo. Pročitajte više u našim",
+      "text2": "uvjetima korištenja",
+      "text3": "pravilima privatnosti.",
+      "text4": "Slažem se",
+      "text5": "Ne slažem se"
+    },
+    "Privacy": {
+      "title1": "Pravila privatnosti",
+      "title2": "Registrirani korisnici",
+      "title3": "Izjava o zaštiti i prikupljanju osobnih podataka i njihovom korištenju te “kolačića”",
+      "paragraph1": "ŽIVIĆ- ELEKTRO j.d.o.o. Vukovar poštuje privatnost svojih korisnika i posjetitelja web stranica. Podatke registriranih korisnika, te ostale podatke o korisniku, ŽIVIĆ- ELEKTRO j.d.o.o. Vukovar  neće davati na uvid trećoj strani. Podaci o korisniku neće biti dostupni trećoj strani osim u slučaju kada je takva obaveza regulirana zakonom.",
+      "paragraph2": "ŽIVIĆ- ELEKTRO j.d.o.o. Vukovar se obavezuje da će čuvati privatnost korisnika web stranica, osim u slučaju teškog kršenja pravila ili nezakonitih aktivnosti korisnika.",
+      "paragraph3": "Registrirani korisnik web stranice može biti samo korisnik koji posjeduje korisničko ime i lozinku.",
+      "paragraph4": "ŽIVIĆ- ELEKTRO j.d.o.o. Vukovar ne može se držati odgovornim za neovlašteno korištenje korisničkog računa, niti eventualnu štetu nastalu na taj način",
+      "paragraph5": "ŽIVIĆ- ELEKTRO j.d.o.o. Vukovar zadržava pravo ukinuti ili uskratiti mogućnost korištenja korisničkog računa bez prethodne najave ili/i objašnjenja.",
+      "paragraph6": "ŽIVIĆ- ELEKTRO j.d.o.o. Vukovar ne snosi odgovornost za štetu nastalu ukidanjem korisničkog računa.",
+      "paragraph7": "Osobni podaci su svi podaci koji se odnose na pojedinca čiji je identitet utvrđen ili se može utvrditi. Pojedinac čiji se identitet može utvrditi jest osoba koja se može identificirati izravno ili neizravno, osobito uz pomoć identifikatora kao što su ime, identifikacijski broj, podaci o lokaciji, mrežni identifikator ili uz pomoć jednog ili više čimbenika svojstvenih za fizički, fiziološki, genetski, mentalni, ekonomski, kulturni ili socijalni identitet tog pojedinca.",
+      "paragraph8": "ŽIVIĆ- ELEKTRO j.d.o.o. obvezuje se pružati zaštitu osobnim podacima korisnika usluga na način da prikuplja samo nužne, osnovne podatke o korisnicima, a koji su nužni za ispunjenje naših obveza (podaci o ispunjenju kontakt forme); informira korisnike o načinu korištenja prikupljenih podataka, redovito daje korisnicima mogućnost izbora o upotrebi njihovih podataka, uključujući mogućnost odluke žele li ili ne da se njihovo ime ukloni s lista koje se koriste za marketinške kampanje. Svi se podaci o korisnicima strogo čuvaju i dostupni su samo djelatnicima kojima su ti podaci nužni za obavljanje posla. Svi djelatnici ŽIVIĆ- ELEKTRO j.d.o.o. i poslovni partneri odgovorni su za poštivanje načela zaštite privatnosti.",
+      "paragraph9": " Sukladno čl. 10. Zakona o zaštiti potrošača, potrošači mogu uložiti pisani prigovor putem elektronske pošte.",
+      "paragraph10": "Kad komunicirate s nama putem e-pošte, telefona ili osobno, možemo prikupiti osobne podatke kao što su Vaše ime, adresa, broj telefona, adresa e-pošte i preferencije za kontaktiranje. Također možemo izraditi zapisnike događaja korisne za dijagnosticiranje problema u radu portala te spremati informacije u vezi sa nastalim problemom ili problemom podrške. Te podatke koristimo kako bismo Vam pružili bolju podršku.",
+      "paragraph11": "Vaše osobne podatke možemo upotrebljavati kako bismo komunicirali s Vama, uključujući komunikaciju o Vašem računu ili transakcijama prema nama, kako bismo Vam osigurali važne informacije o proizvodima , slali obavijesti o pretplati te za marketinšku korespondenciju. Možemo upotrebljavati Vaše osobne podatke kako bismo Vam slali marketinšku korespondenciju (uključujući poruke e-pošte) povezanu s proizvodima ili uslugama u skladu mogućim s Vašim preferencijama za e-poštu. Osobne podatke ne dijelimo s trećim stranama za marketinške potrebe trećih strana, a ako ne želite primati marketinšku korespondenciju kliknite na poveznicu “Odjava s newsletter-a” u bilo kojoj marketinškoj poruci e-pošte koju primite od naše tvrtke.",
+      "paragraph12": "Možemo upotrebljavati osobne podatke za interne statističke, marketinške ili operacijske svrhe, uključujući stvaranje izvještaja o prodaji, interesa korisnika, sklonosti kupnji i drugih trendova koji se odnose na naše korisnike.",
+      "paragraph13": "Vaše Osobne podatke ne dijelimo drugim tvrtkama ili osobama. Vaši se osobni podaci mogu razotkriti drugim stranama samo uz Vaše dopuštenje u obliku koji može biti obavezan sukladno važećem zakonu. Sukladno važećim zakonima Vaše Osobne podatke možemo razotkriti ako vjerujemo da je to nužno sukladno primjenjivom zakonu ili propisu, u sklopu suradnje s pravnim procesom, na zahtjev predstavnika zakona. Prikupljeni osobni podaci se ne dostavljaju trećim osobama niti komercijalno eksploatiraju od trećih strana i izvan Republike Hrvatske, međutim zadržavamo pravo prijenosa osobnih podataka podružnici, ogranku ili trećoj strani u slučaju reorganizacije, udruživanja ili ustupanja poslova.",
+      "paragraph14": "Web stranica sadrži dio gdje možete ostaviti komentare pomoću kojeg možete objavljivati informacije i poruke. Imajte na umu kako sve informacije koje na našem web-mjestu objavite kroz takve usluge ili na drugi način mogu postati javne informacije i mogu biti dostupne posjetiteljima web-mjesta i široj javnosti. Potičemo vas na oprez i diskreciju prilikom objavljivanja osobnih podataka ili drugih informacija na našem web-mjestu.",
+      "paragraph15": " Naše web-mjesto nije namijenjeno pojedincima mlađim od 16 godina te zahtijevamo da nam pojedinci mlađi od 16 godina ne dostavljaju svoje osobne podatke. Ako doznamo da smo prikupili osobne podatke djeteta mlađeg od 16 godina, poduzet ćemo korake da te informacije izbrišemo što je prije moguće, a ako znate za korisnika mlađeg od 16 godina koji se služi našim web-mjestom, obratite nam se u rubrici kontakt.",
+      "paragraph16": " Možda ćemo s vremena na vrijeme mijenjati ovu Izjavu ili uvjete korištenja kako dodajemo nove proizvode, usluge i aplikacije ili poboljšavamo našu trenutačnu ponudu te kako se tehnologija i zakoni mijenjaju. Datum posljednjeg ažuriranja možete pronaći na dnu ove stranice. Sve će promjene postati važeće nakon što objavimo promjenu na našem web-mjestu. Ako je riječ o materijalnim izmjenama, obavijestit ćemo vas o tome i ako je to potrebno sukladno primjenjivom zakonu, zatražiti vaše dopuštenje. Sukladno važećim zakonima, tu obavijest možete primiti porukom e-pošte ili objavom izmjene na našim zahvaćenim web-mjestima ili proizvodima/aplikacijama.",
+      "paragraph17": "Vaše osobne podatke čuvat ćemo tijekom razdoblja potrebnog da se ispuni njihova svrha, osim ako je duže čuvanje propisano zakonom.",
+      "paragraph18": "Također možete zatražiti brisanje ili ažuriranje Vaših Osobnih podataka i računa putem rubrike „Kontakt“ ili dopisom na službenom papirom poštom.",
+      "paragraph19": "Sukladno važećem zakonu brzo ćemo odgovoriti na Vaše zahtjeve, zbog Vaše zaštite, možemo provesti samo zahtjeve koji se odnose na osobne podatke, a povezani su s određenom adresom e-pošte koju ste uporabili za slanje zahtjeva, možda ćemo morati provjeriti Vaš identitet prije provođenja zahtjeva. Možemo odbiti provođenje zahtjeva koji ugrožavaju privatnost drugih strana, iznimno su nepraktični ili bismo u njihovom ispunjavanju učinili nešto što nije dopušteno primjenjivim zakonima. Uz to, u mjeri u kojoj je to dopušteno važećim zakonima, možda ćemo trebati neke osobne podatke čuvati tijekom dužeg vremena za potrebe arhiviranja, poput čuvanja zapisnika o vašim kupnjama za potrebe jamstva ili računovodstva.",
+      "paragraph20": "Osobni podaci su zaštićeni i čuvaju se dostupnim tehnologijama i procesima.",
+      "paragraph21": " Zahtjeve za pristup, ispravljanje ili brisanje osobnih podataka možete uputiti na našoj stranici za kontakt."
+  },
+  "CookiesStatement": {
+    "title1": "Izjava o 'kolačićima'",
+    "paragraph1": "Internet stranica www.hedgehogwebdev.com koristi kolačiće (eng. ‘cookies’) kako bi korisniku pružili uslugu s potpunim funkcionalnostima. Kolačići su skup podataka koje generira poslužitelj web stranica i koje web preglednik sprema na disk korisnika u obliku male tekstualne datoteke.",
+    "paragraph2": "Sesijski kolačić se postavlja na računalo posjetitelja Internet stranice www.hedgehogwebdev.com samo za vrijeme trajanja posjeta našoj Internet stranici kako bi se korisniku na omogućila učinkovitija uporaba www.hedgehogwebdev.com i automatski istječe kada se zatvori svoj preglednik.",
+    "paragraph3": " www.hedgehogwebdev.com prate statističku posjećenost radi dobivanja nužne informacije o privlačnosti i uspješnosti svojih stranica na tržištu. Za to se koristi usluga treće strane pod nazivom Google Analytics. Više o tome te regulaciji kolačića koji su za to nužni, može se vidjeti na: http://www.google.com/intl/en/analytics/privacyoverview.html. Internet stranica www.zivic-elektro.shop može koristiti kolačiće u svrhu oglašavanja vlastitih usluga ili usluga i proizvoda svojih partnera. To se prikazivanje oglasa omogućuje putem kolačića.",
+    "paragraph4": "Svi korisnici Internet stranice www.hedgehogwebdev.com u svakom trenutku mogu samostalno urediti primanje kolačića putem postavki svojeg Internet-preglednika. www.hedgehogwebdev.com isključuje svaku odgovornost za bilo kakav gubitak funkcionalnosti i/ili kvalitete sadržaja na www.hedgehogwebdev.com u svim slučajevima odabira regulacije primanja kolačića od strane korisnika. Korištenjem Internet stranice www.hedgehogwebdev.com smatra se da su korisnici u svakom trenutku upoznati i suglasni s ovim uvjetima korištenja, uključujući s odredbama o obradi podataka i mogućnostima u vezi s kolačićima.",
+    "paragraph5": " www.hedgehogwebdev.com može prikupljti određene podatke o Korisnicima tijekom pristupanja / korištenja www.hedgehogwebdev.com (IP adresa, session-cookie, ključne riječi korištene kod pretraživanja i sl.), koje koristi za analizu ponašanja Korisnika i rada sustava, kako bi poboljšao rad i funkcionalnost www.hedgehogwebdev.com i njegove sadržaje dodatno usmjerio i prilagodio Korisnicima.",
+    "paragraph6": "Pružatelj usluge se obvezuje da će u dobroj namjeri koristiti podatke pribavljene od Korisnika, te da pribavljene podatke neće distribuirati trećim osobama.",
+    "paragraph7": " Kupac i korisnik prihvaćanjem ovih uvjeta korištenja i kupnje jamči da je upoznat sa zaštititom i prikupljanjem “kolačića”, svojih osobnih podataka te njihovom korištenju, daje svoju privolu i suglasnost za navedeno korištenje."
+},
+"TermsOfUse": {
+  "title1": "Uvjeti korištenja",
+  "title2": "1. Pružatelj usluge",
+  "title3": "2. Opće odredbe",
+  "title4": "3. Opseg korištenja i prava intelektualnog vlasništva",
+  "title5": "4. Postupak s korisničkim imenom i (lozinkom) zaporkom",
+  "title6": "5. Povezanost na druge internet stranice",
+  "paragraph1": "Živić-elektro j.d.o.o., 204.Vukovarske brigade 39, 32000 Vukovar, OIB: 90344764519(dalje: Pružatelj usluge) svojim korisnicima omogućuje korištenje sadržaja Internet stranice na internetskoj domeni www.hedgehogwebdev.com, koje je regulirano ovim Uvjetima korištenja (dalje Uvjeti korištenja).",
+  "paragraph2": "Korisnikom se smatra svaka osoba koja pristupa i/ili koristi stranice www.hedgehogwebdev.com, bez obzira koristi li besplatne stranice ili stranice za koje je potrebna prijava s korisničkim imenom i lozinkom/zaporkom (dalje: Korisnik)",
+  "paragraph3": "Pristupanjem i/ili korištenjem bilo kojeg dijela sadržaja ili servisa koji pripadaju www.hedgehogwebdev.com smatra se da je Korisnik upoznat s ovim Uvjetima korištenja te da ih u potpunosti razumije i prihvaća. Pružatelj usluge zadržava pravo promjene izgleda, sadržaja i opsega www.hedgehogwebdev.com, svih usluga, stranica i podstranica koje su sastavni dio www.hedgehogwebdev.com kao i ovih Uvjeta korištenja.",
+  "paragraph4": "Pri korištenju www.hedgehogwebdev.com Korisnik je u cijelosti dužan poštovati relevantne odredbe ugovora o zasnivanju pretplatničkog odnosa te ovih Uvjeta korištenja. Niti jedan dio sadržaja www.hedgehogwebdev.com ne smije se koristiti u nezakonite svrhe ili protivno odredbama ovih Uvjeta korištenja.",
+  "paragraph5": "Tekstovi objavljeni u bazama znanja predstavljaju autorstvo.",
+  "paragraph6": "Pružatelj usluge ne preuzima odgovornost za bilo kakvu štetu nastalu korisnicima korištenjem www.hedgehogwebdev.com i njegovog sadržaja, osobito zbog mogućih pogrešaka u prijepisu mišljenja.",
+  "paragraph7": "Korisnici su upoznati sa sljedećim činjenicama: zbirke dokumenata i pojedinačni dokumenti koji su sastavni dio sadržaja www.hedgehogwebdev.com mogu biti u cijelosti ili pojedinačno zaštićeni autorskim pravom i drugim propisima, pojedinačne jedinice, koje su dio sadržaja www.hedgehogwebdev.com, mogu imati značaj autorskog djela, te su zaštićene autorskim pravom njihovog autora. Autorska zaštita sadržaja www.hedgehogwebdev.com, njegovih pojedinačnih zbirki podataka (baza znanja) i pojedinačnih jedinica u zbirkama, koje su dostupne korisnicima, obuhvaća zaštitu u skladu sa Zakonom o autorskom pravu i drugim srodnim pravima.",
+  "paragraph8": "Korisniku je dopušteno korištenje pojedinačnih jedinica objavljenih na www.hedgehogwebdev.com isključivo za vlastite potrebe. Svi oblici daljnje distribucije bilo kojeg dijela www.hedgehogwebdev.com te umnožavanje, kopiranje odnosno omogućavanje korištenja trećim osobama (npr. reproduciranje u publikacijama, objava na internet stranicama trećih osoba i sl.), izričito su zabranjeni.",
+  "paragraph9": "Pružatelj usluge polaže autorska prava na vlastite sadržaje (moguće tekstualne sadržaje, grafičke, baze podataka, programski kod i dr.).",
+  "paragraph10": "Neovlašteno korištenje bilo kojeg dijela ovih sadržaja smatra se kršenjem autorskih i drugih prava Pružatelja usluge i www.hedgehogwebdev.com.",
+  "paragraph11": "Korisnik odgovara Pružatelju usluge za štetu koja Pružatelju usluge nastane kršenjem odredbi ove glave Uvjeta korištenja, tj. u njemu sadržanih obveza odnosno ograničenja.",
+  "paragraph12":"Korisnik se obvezuje da će dodijeljenu zaporku čuvati kao poslovnu tajnu te da će zaporku koristiti samo osobno, tj. da iste neće učiniti dostupnima trećim osobama. Korisnik je odgovoran Pružatelju usluge za štetu nastalu pri zloporabi zaporke od strane neovlaštenog korisnika odnosno treće osobe kojoj je omogućio korištenje istima.",
+  "paragraph13": " Korisnik je obvezan u slučaju saznanja za činjenice koje ukazuju na mogućnost zloporabe zaporke, bez odgode obavijestiti Pružatelja usluge.",
+  "paragraph14": "U slučaju kršenja odredaba Uvjeta korištenja Pružatelj usluge ima pravo ograničiti ili onemogućiti uporabu sadržaja www.hedgehogwebdev.com.",
+  "paragraph15": "www.hedgehogwebdev.com može sadržavati i poveznice na druge internet stranice, koje nisu održavane od strane društva. Pružatelj usluge za sadržaj tih stranica ne odgovara."
+},
+"Complaint": {
+  "title": "Reklamacije i prigovori",
+  "paragraph1": "Reklamacija na izvršenu uslugu vrši najduže u roku 8 dana od primitka usluge.",
+  "paragraph2": "Molimo da tokom pisanja prigovora ispunite sljedeće:",
+  "paragraph3": "Vaše prigovore i reklamacije možete poslati na:",
+  "paragraph4": "Više informacija možete dobiti pozivom na broj telefona:",
+  "li1":"Upišite Vaše ime i prezime",
+  "li2":"Upišite Vašu e-mail adresu",
+  "li3":"Upišite broj i datum narudžbe",
+  "li4":"Naziv usluge",
+  "li5":"Razlog prigovora ili reklamacije"
+}
+}
