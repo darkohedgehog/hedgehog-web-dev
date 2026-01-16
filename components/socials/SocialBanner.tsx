@@ -2,6 +2,7 @@
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import Link from "next/link";
 
 export const SocialBanner = ({
   className,
@@ -15,28 +16,30 @@ export const SocialBanner = ({
   const images = [
     {
       name: "GitHub",
-      src: "https://wp.zivic-elektro.shop/wp-content/uploads/2025/05/270-151-scaled-1.jpg",
+      src: "/assets/github.png",
+      link: "https://github.com/darkohedgehog"
     },
     {
       name: "Facebook",
-      src: "https://wp.zivic-elektro.shop/wp-content/uploads/2025/04/16.36.052.jpg",
+      src: "/assets/facebook.png",
+      link: "https://www.facebook.com/messages/t/100074828598715/?locale=hr_HR"
     },
     {
       name: "Instagram",
-      src: "https://wp.zivic-elektro.shop/wp-content/uploads/2025/04/12.23.051.jpg",
+      src: "/assets/instagram.png",
+      link: "https://www.instagram.com/hedgehog_web_developer/"
     },
     {
       name: "LinkedIn",
-      src: "https://wp.zivic-elektro.shop/wp-content/uploads/2025/04/trofazno-monofazni-razvodnik.jpg",
+      src: "/assets/linkedin.png",
+      link: "https://www.linkedin.com/in/darko-%C5%BEivi%C4%87/"
     },
     {
       name: "Email",
-      src: "https://wp.zivic-elektro.shop/wp-content/uploads/2025/04/17.01.007.jpg",
+      src: "/assets/email.png",
+      link: "mailto:zivic.darko79@gmail.com"
     },
-    {
-      name: "Mobile",
-      src: "https://wp.zivic-elektro.shop/wp-content/uploads/2025/04/05.63.81.jpg",
-    },
+    
   ];
   return (
     <div className={cn("flex flex-col items-center mt-0 lg:mt-14 md:mt-10", containerClassName)}>
@@ -55,6 +58,11 @@ export const SocialBanner = ({
                   transition={{ duration: 0.2 }}
                   className="relative overflow-hidden rounded-full border-2 border-sky-500"
                 >
+                <Link
+                  href={image.link ? image.link : '#'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Image
                     height={100}
                     width={100}
@@ -63,6 +71,7 @@ export const SocialBanner = ({
                     priority
                     className="h-8 w-8 object-cover object-top md:h-14 md:w-14"
                   />
+                  </Link>
                 </motion.div>
               </div>
             </div>

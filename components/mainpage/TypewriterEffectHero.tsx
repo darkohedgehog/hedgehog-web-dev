@@ -6,6 +6,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { SocialBanner } from "../socials/SocialBanner";
+import { MdCall } from "react-icons/md";
+import { TfiAnnouncement } from "react-icons/tfi";
 
 
 export function TypewriterEffectHero() {
@@ -40,22 +42,24 @@ export function TypewriterEffectHero() {
       <div className="mt-6 flex flex-col md:flex-row gap-4">
         <Link
           href={`/${locale}/contact`}
-          className="w-40 h-10 flex items-center justify-center rounded-xl
-                     bg-black text-white text-sm
-                     border border-transparent
-                     hover:bg-neutral-800 transition"
+          className="bg-sky-500 text-cyan-100 border border-white/12 ring-1 ring-sky-300/20 hover:bg-white/9 shadow-[0_18px_60px_rgba(0,0,0,0.40)] w-40 h-10 flex items-center justify-center rounded-xl
+                     text-sm transition font-semibold"
         >
-          {t("button1")}
+          <span className="flex items-center justify-center gap-2">
+          <MdCall /> {t("button1")}
+          </span>
         </Link>
 
         <Link
           href={`/${locale}/projects`}
           className="w-40 h-10 flex items-center justify-center rounded-xl
-                     bg-white text-black text-sm
+                     bg-sky-200 text-cyan-800 text-sm font-semibold
                      border border-black
                      hover:bg-neutral-100 transition"
         >
-          {t("button2")}
+          <span className="flex items-center justify-center gap-2">
+          <TfiAnnouncement /> {t("button2")}
+          </span>
         </Link>
       </div>
 
