@@ -109,7 +109,7 @@ export function NavBar() {
             {/* Divider */}
             <div className="my-2 h-px w-full bg-white/10" />
 
-            {/* Middle: LangSwitch (na mestu gde je bio Login) */}
+            {/* Middle: LangSwitch */}
             <div className="flex items-center justify-between rounded-xl px-3 py-2 bg-white/5 ring-1 ring-white/10">
               <div className="flex flex-col">
                 <span className="text-sm font-medium text-slate-100">
