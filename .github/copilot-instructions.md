@@ -1,3 +1,5 @@
+# AI Coding Agent Instructions
+
 ## Project Overview
 
 **Portfolio Hedgehog** is a bilingual (HR/EN) Next.js portfolio website showcasing web development services. It uses modern animations, component-based architecture, and internationalization via `next-intl`.

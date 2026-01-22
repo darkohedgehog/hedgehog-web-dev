@@ -66,12 +66,12 @@ export function AnimatedPin() {
           title={project.title}
           href={project.live}
         >
-          <div className="flex flex-col p-4 tracking-tight text-slate-100/50 w-[20rem] h-80 lg:w-[24rem] lg:h-88">
+          <div className="flex flex-col p-4 tracking-tight text-cyan-300 w-[20rem] h-80 lg:w-[24rem] lg:h-88">
             <h3 className="max-w-xs pb-2 m-0 font-bold text-base text-accent dark:text-accentDark">
               {project.title}
             </h3>
             <div className="text-base m-0 p-0 font-normal">
-              <span className="text-slate-500">
+              <span className="text-cyan-500">
                 {project.description}
               </span>
             </div>
@@ -82,8 +82,8 @@ export function AnimatedPin() {
                   width={100}
                   height={100}
                   alt={project.title}
-                  priority={false}
-                  className="w-full h-32 rounded-md object-cover" />
+                  priority
+                  className="w-full h-32 rounded-md object-cover object-center" />
               </div>
             )}
             <div className="flex items-center justify-center mt-4 gap-6">

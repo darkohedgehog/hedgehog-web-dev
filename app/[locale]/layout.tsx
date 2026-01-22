@@ -7,6 +7,7 @@ import { notFound } from "next/navigation";
 import "@/app/globals.css";
 import { DottedBackground } from "@/components/background/DottedBackground";
 import { NavBar } from "@/components/navigation/NavBar";
+import Footer from "@/components/footer/Footer";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
@@ -40,6 +41,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           <DottedBackground />
           <NavBar />
           <div className="relative z-10 min-h-screen">{children}</div>
+          <Footer />
         </NextIntlClientProvider>
       </body>
     </html>
