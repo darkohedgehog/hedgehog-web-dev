@@ -1,9 +1,12 @@
+import { AboutMe } from "@/components/about/AboutMe";
 
 
 const AboutPage = () => {
   return (
-    <div>AboutPage</div>
+    <>
+    <AboutMe />
+    </>
   )
 }
 
-export default AboutPage
+export default AboutPage;
