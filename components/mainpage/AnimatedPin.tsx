@@ -102,7 +102,7 @@ export function AnimatedPin() {
             </div>
             <div className="flex mt-5 space-x-2">
               {project.technologies.map((tech, idx) => (
-                <span key={idx} className="text-xs text-accent dark:text-accentDark px-2 py-1 rounded">
+                <span key={idx} className="text-xs text-cyan-300 px-2 py-1 rounded">
                   {tech}
                 </span>
               ))}
