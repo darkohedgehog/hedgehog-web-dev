@@ -243,7 +243,7 @@ export const Terminal = ({
     <div
       ref={containerRef}
       className={cn(
-        "my-16 text-sky-400 border-2 border-cyan-300/60 bg-linear-to-r from-slate-950/80 via-[#051542]/60 to-slate-950/80 backdrop-blur-xl ring-1 ring-sky-300/15 rounded-2xl mx-auto h-full max-h-100 w-full max-w-6xl",
+        "my-16 text-sky-400 border-2 border-cyan-300/60 bg-linear-to-r from-slate-950/80 via-[#051542]/60 to-slate-950/80 backdrop-blur-xl ring-1 ring-sky-300/15 rounded-2xl mx-auto h-full w-full max-w-6xl",
         className
       )}
     >

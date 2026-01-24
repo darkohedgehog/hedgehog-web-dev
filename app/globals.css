@@ -18,3 +18,35 @@
   );
   box-shadow: 0 20px 60px rgba(0,0,0,0.45);
 }
+
+.terminal-cursor {
+  display: inline-block;
+  width: 0.6ch;
+  margin-left: 0.2ch;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-1px);
+  animation: terminal-blink 1s step-end infinite;
+}
+
+@keyframes terminal-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Kad sve završi: cursor “diše” */
+.terminal-cursor--breathe {
+  animation: terminal-breathe 1.6s ease-in-out infinite;
+}
+
+@keyframes terminal-breathe {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: translateY(-1px) scaleX(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-1px) scaleX(1.05);
+  }
+}
