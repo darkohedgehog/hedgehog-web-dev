@@ -1,11 +1,11 @@
-import Projects from "@/components/projects/Projects";
+import AllProjects from "@/components/projects/AllProjects";
 
 
 const ProjectsPage = () => {
   return (
-    <div>
-      <Projects />
-    </div>
+    <>
+      <AllProjects />
+    </>
   )
 }
 

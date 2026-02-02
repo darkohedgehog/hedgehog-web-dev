@@ -1,6 +1,6 @@
-// components/Projects.tsx
 import Image from "next/image";
 import Link from "next/link";
+import { getLocale, getTranslations } from "next-intl/server";
 
 type StrapiFormat = {
   url: string;
@@ -190,31 +190,38 @@ function parseProjectAttributes(attrs: Record<string, unknown>): Project | null 
   };
 }
 
-async function getProjects(): Promise<Project[]> {
-  const API_URL = process.env.NEXT_PUBLIC_API_URL; // http://localhost:1337/api
-  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL; // http://localhost:1337
+function toStrapiLocale(appLocale: string): string {
+  // Next-intl locale -> Strapi locale
+  if (appLocale.toLowerCase().startsWith("hr")) return "hr-HR";
+  if (appLocale.toLowerCase().startsWith("en")) return "en";
+  return "hr-HR"; // fallback
+}
+
+async function getProjects(appLocale: string): Promise<Project[]> {
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
   const TOKEN = process.env.REST_API_KEY;
 
   if (!API_URL) throw new Error("Missing NEXT_PUBLIC_API_URL in .env");
   if (!BASE_URL) throw new Error("Missing NEXT_PUBLIC_BASE_URL in .env");
 
-  const params = new URLSearchParams();
+  const strapiLocale = toStrapiLocale(appLocale);
 
-  // Sort newest first
+  const params = new URLSearchParams();
   params.set("sort[0]", "createdAt:desc");
 
-  // ✅ Strapi v5 SAFE populate: DO NOT use "*" for media
-  // IMAGE fields
+  // ✅ ovo rešava i18n:
+  params.set("locale", strapiLocale);
+
+  // populate (Strapi v5 safe)
   params.set("populate[image][fields][0]", "url");
   params.set("populate[image][fields][1]", "alternativeText");
   params.set("populate[image][fields][2]", "formats");
 
-  // TECHNOLOGIES fields
   params.set("populate[technologies][fields][0]", "name");
   params.set("populate[technologies][fields][1]", "slug");
   params.set("populate[technologies][fields][2]", "color");
 
-  // TECHNOLOGY ICON media fields
   params.set("populate[technologies][populate][icon][fields][0]", "url");
   params.set("populate[technologies][populate][icon][fields][1]", "alternativeText");
   params.set("populate[technologies][populate][icon][fields][2]", "formats");
@@ -236,16 +243,12 @@ async function getProjects(): Promise<Project[]> {
 
   const json: unknown = await res.json();
 
-  // Strapi returns: { data: [...] }
   if (isRecord(json) && "data" in json && Array.isArray(json.data)) {
     return json.data
       .map((item): Project | null => {
         if (!isRecord(item)) return null;
-
-        // Strapi v4: { attributes: {...} }, v5: could be direct
         const attrs =
           "attributes" in item && isRecord(item.attributes) ? item.attributes : item;
-
         return parseProjectAttributes(attrs);
       })
       .filter((x): x is Project => x !== null);
@@ -254,26 +257,32 @@ async function getProjects(): Promise<Project[]> {
   return [];
 }
 
-export default async function Projects() {
+export default async function AllProjects() {
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:1337";
-  const projects = await getProjects();
-
+  const locale = await getLocale();
+  const projects = await getProjects(locale);
+  const t = await getTranslations("AllProjects");
   return (
     <section className="w-full py-14">
       <div className="container mx-auto px-4">
         <div className="flex items-end justify-between gap-4">
           <div>
-            <h2 className="text-3xl font-semibold tracking-tight">Projects</h2>
-            <p className="mt-2 text-sm opacity-75">
-              A full list of my work — shipped, polished, and evolving.
+            <h2 className="text-3xl font-semibold tracking-tight text-cyan-300">
+              {t("title")}
+            </h2>
+            <p className="mt-2 text-sm opacity-75 text-cyan-500">
+              {t("description")}
             </p>
           </div>
-          <p className="text-sm opacity-70">{projects.length} total</p>
+          <p className="text-sm opacity-70 text-cyan-600">
+            {t("total", { count: projects.length })}</p>
         </div>
 
         {projects.length === 0 ? (
-          <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-6">
-            <p className="text-sm opacity-80">No projects found yet.</p>
+          <div className="mt-8 rounded-2xl bg-linear-to-r from-slate-950/80 via-[#051542]/60 to-slate-950/80 backdrop-blur-xl ring-1 ring-sky-300/15 border-cyan-300/60 border group-hover/pin:border-white/20 transition duration-700 overflow-hidden p-6">
+            <p className="text-sm opacity-80 text-cyan-300 flex items-center justify-center">
+              {t("notfound")}
+              </p>
           </div>
         ) : (
           <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
@@ -283,9 +292,9 @@ export default async function Projects() {
               return (
                 <article
                   key={p.slug}
-                  className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm transition hover:bg-white/10"
+                  className="group relative overflow-hidden rounded-2xl bg-linear-to-r from-slate-950/80 via-[#051542]/60 to-slate-950/80 backdrop-blur-xl ring-1 ring-sky-300/15 border-cyan-300/60 border group-hover/pin:border-white/20 transition duration-700 hover:bg-white/10"
                 >
-                  <Link href={`/projects/${p.slug}`} className="block">
+                  <Link href={`/${locale}/projects/${p.slug}`} className="block">
                     <div className="relative aspect-video w-full overflow-hidden">
                       {imgUrl ? (
                         <Image
@@ -297,16 +306,16 @@ export default async function Projects() {
                         />
                       ) : (
                         <div className="flex h-full w-full items-center justify-center bg-black/20 text-sm opacity-70">
-                          No image
+                          {t("noImage")}
                         </div>
                       )}
                     </div>
                   </Link>
 
                   <div className="p-5">
-                    <h3 className="text-lg font-semibold leading-snug">
+                    <h3 className="text-lg font-semibold leading-snug text-cyan-500">
                       <Link
-                        href={`/projects/${p.slug}`}
+                        href={`/${locale}/projects/${p.slug}`}
                         className="hover:underline underline-offset-4"
                       >
                         {p.title}
@@ -314,13 +323,13 @@ export default async function Projects() {
                     </h3>
 
                     {p.shortDescription ? (
-                      <p className="mt-2 line-clamp-3 text-sm opacity-80">
+                      <p className="mt-2 line-clamp-3 text-sm opacity-80 text-cyan-500">
                         {p.shortDescription}
                       </p>
                     ) : null}
 
                     {p.technologies.length > 0 ? (
-                      <div className="mt-4 flex flex-wrap gap-2">
+                      <div className="mt-4 flex flex-wrap gap-2 text-sky-400">
                         {p.technologies.slice(0, 10).map((t) => {
                           const iconUrl = t.icon?.url
                             ? absoluteUrl(t.icon.url, BASE_URL)
@@ -333,7 +342,7 @@ export default async function Projects() {
                           return (
                             <span
                               key={t.slug}
-                              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs"
+                              className="inline-flex items-center gap-2 rounded-full border border-cyan-700 bg-white/5 px-3 py-1 text-xs"
                               title={t.name}
                               style={style}
                             >
@@ -356,10 +365,10 @@ export default async function Projects() {
                     {/* CTA Row */}
                     <div className="mt-5 flex flex-wrap items-center gap-3">
                       <Link
-                        href={`/projects/${p.slug}`}
-                        className="inline-flex items-center justify-center rounded-xl border border-white/10 bg-white/10 px-4 py-2 text-sm font-medium transition hover:bg-white/15"
+                        href={`/${locale}/projects/${p.slug}`}
+                        className="inline-flex items-center justify-center rounded-xl border border-cyan-600 bg-white/10 px-4 py-2 text-sm font-medium text-sky-400 transition hover:bg-white/15"
                       >
-                        View details →
+                        {t("details")} →
                       </Link>
 
                       {p.liveUrl ? (
@@ -367,7 +376,7 @@ export default async function Projects() {
                           href={p.liveUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-sm underline underline-offset-4 opacity-90 hover:opacity-100"
+                          className="text-sm underline underline-offset-4 opacity-90 hover:opacity-100 text-sky-300"
                         >
                           Live ↗
                         </a>
@@ -378,7 +387,7 @@ export default async function Projects() {
                           href={p.githubUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-sm underline underline-offset-4 opacity-90 hover:opacity-100"
+                          className="text-sm underline underline-offset-4 opacity-90 hover:opacity-100 text-sky-200"
                         >
                           GitHub ↗
                         </a>

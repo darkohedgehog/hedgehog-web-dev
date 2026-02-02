@@ -146,17 +146,14 @@
       "paragraph1": "Odgovoriću Vam u što kraćem roku",
       "paragraph2": "Hajde zajedno da Vas predstavimo u najboljem svjetlu"
     },
-    "Blog": {
-      "no_blogs": "Trenutno nema blogova.",
-      "loading": "Učitavanje blogova, molimo sačekajte...",
-      "title": "Izazovi i Rješenja u Razvoju Web Aplikacija",
-      "paragraph": "Tijekom svoje karijere web developera, susretao sam se s različitim izazovima pri izradi aplikacija, bilo da se radi o problemima s dinamičkim rutiranjem, stilizacijom komponenti, ili optimizacijom performansi. Kroz rad na različitim projektima, imao sam priliku koristiti moderne tehnologije poput Next.js, React, TailwindCSS,Strapi ..., što mi je omogućilo ne samo da riješim probleme na efikasan način, već i da unaprijedim svoja znanja. U ovom blogu želim podijeliti iskustva o preprekama s kojima sam se suočio, kao i strategije koje su mi pomogle da ih prevaziđem",
-      "available": "Nema dostupnih blogova"
-    },
-    "BlogDetail": {
-      "loading": "Učitavam...",
-      "available":"Nema dostupnog sadržaja"
-    } ,
+    "AllProjects": {
+    "title": "Projekti",
+    "description": "Pogledajte neke od mojih najnovijih radova, možda pronađete inspiraciju ili ideju za svoj sljedeći projekat.",
+    "total": "{count} ukupno",
+    "notfound": "Nema projekata za prikazati",
+    "noImage": "Nema slike za prikazati",
+    "details": "Pogledaj detalje"
+  },
     "CookieConsent": {
       "text1": "Ova web stranica koristi kolačiće da poboljša vaše korisničko iskustvo. Pročitajte više u našim",
       "text2": "uvjetima korištenja",
