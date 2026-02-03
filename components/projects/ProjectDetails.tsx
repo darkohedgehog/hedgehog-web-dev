@@ -255,7 +255,7 @@ export default async function ProjectDetails({ slug }: Props) {
       <div className="container mx-auto px-4">
         {/* Breadcrumb / back */}
         <div className="mb-6">
-          <Link href="/projects" className="text-sm opacity-80 hover:opacity-100 underline underline-offset-4">
+          <Link href="/projects" className="text-sm text-sky-200 opacity-80 hover:opacity-100 underline underline-offset-4">
             ← Back to projects
           </Link>
         </div>
@@ -263,12 +263,12 @@ export default async function ProjectDetails({ slug }: Props) {
         {/* Header */}
         <div className="flex flex-col gap-6">
           <div>
-            <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
+            <h1 className="text-3xl text-sky-400 md:text-4xl font-semibold tracking-tight">
               {project.title}
             </h1>
 
             {project.shortDescription ? (
-              <p className="mt-3 text-base md:text-lg opacity-80 max-w-3xl">
+              <p className="mt-3 text-base text-cyan-500 md:text-lg opacity-80 max-w-3xl">
                 {project.shortDescription}
               </p>
             ) : null}
@@ -280,7 +280,7 @@ export default async function ProjectDetails({ slug }: Props) {
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-xl border border-white/10 bg-white/10 px-4 py-2 text-sm font-medium transition hover:bg-white/15"
+                  className="inline-flex items-center justify-center rounded-xl border border-cyan-600 bg-white/20 px-4 py-2 text-sm font-medium text-sky-400 transition hover:bg-white/15"
                 >
                   Visit live ↗
                 </a>
@@ -291,7 +291,7 @@ export default async function ProjectDetails({ slug }: Props) {
                   href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium transition hover:bg-white/10"
+                  className="inline-flex items-center justify-center rounded-xl border border-cyan-600 bg-white/20 px-4 py-2 text-sm font-medium text-sky-400 transition hover:bg-white/15"
                 >
                   View code ↗
                 </a>
@@ -308,7 +308,7 @@ export default async function ProjectDetails({ slug }: Props) {
                   return (
                     <span
                       key={t.slug}
-                      className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs"
+                      className="inline-flex items-center gap-2 rounded-full border border-cyan-700 bg-white/5 px-3 py-1 text-xs font-medium text-cyan-300"
                       title={t.name}
                       style={style as React.CSSProperties | undefined}
                     >
@@ -341,7 +341,7 @@ export default async function ProjectDetails({ slug }: Props) {
 
           {/* Markdown body */}
           {project.description ? (
-            <div className="mt-2 rounded-2xl border border-white/10 bg-white/5 p-6">
+            <div className="mt-2 rounded-2xl bg-linear-to-r from-slate-950/80 via-[#051542]/60 to-slate-950/80 backdrop-blur-xl ring-1 ring-sky-300/15 border-cyan-300/60 border group-hover/pin:border-white/20 transition duration-700 hover:bg-white/10 bg-white/5 p-6 text-sky-200">
               <MarkdownRenderer content={project.description} />
             </div>
           ) : null}

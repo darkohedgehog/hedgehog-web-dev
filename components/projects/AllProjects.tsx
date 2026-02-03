@@ -265,7 +265,7 @@ export default async function AllProjects() {
   return (
     <section className="w-full py-14">
       <div className="container mx-auto px-4">
-        <div className="flex items-end justify-between gap-4">
+        <div className="grid grid-cols-1 items-end justify-between gap-4">
           <div>
             <h2 className="text-3xl font-semibold tracking-tight text-cyan-300">
               {t("title")}
