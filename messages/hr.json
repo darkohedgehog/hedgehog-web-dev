@@ -154,6 +154,11 @@
     "noImage": "Nema slike za prikazati",
     "details": "Pogledaj detalje"
   },
+  "ProjectDetails": {
+    "back": "Nazad na projekte",
+    "live": "Pogledaj uživo",
+    "github": "Pogledaj kod"
+  },
     "CookieConsent": {
       "text1": "Ova web stranica koristi kolačiće da poboljša vaše korisničko iskustvo. Pročitajte više u našim",
       "text2": "uvjetima korištenja",

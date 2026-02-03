@@ -2,13 +2,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { getLocale, getTranslations } from "next-intl/server";
 import MarkdownRenderer from "./MarkdownRenderer";
 
-type StrapiFormat = {
-  url: string;
-  width?: number;
-  height?: number;
-};
+type StrapiFormat = { url: string; width?: number; height?: number };
 
 type StrapiMedia = {
   url: string;
@@ -25,17 +22,33 @@ type Technology = {
   icon?: StrapiMedia | null;
 };
 
+type ProjectLocalization = {
+  locale: string; // strapi locale: "hr-HR" | "en"
+  slug: string;
+};
+
 type Project = {
   title: string;
   slug: string;
+  locale?: string | null;
   shortDescription?: string | null;
   description?: string | null;
-  featured?: boolean | null;
   liveUrl?: string | null;
   githubUrl?: string | null;
   image?: StrapiMedia | null;
   technologies: Technology[];
+  localizations: ProjectLocalization[];
 };
+
+function toStrapiLocale(appLocale: string): string {
+  if (appLocale.toLowerCase().startsWith("hr")) return "hr-HR";
+  if (appLocale.toLowerCase().startsWith("en")) return "en";
+  return "hr-HR";
+}
+
+function toAppLocale(strapiLocale: string): "hr" | "en" {
+  return strapiLocale.toLowerCase().startsWith("hr") ? "hr" : "en";
+}
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null;
@@ -54,14 +67,11 @@ function absoluteUrl(pathOrUrl: string, base: string): string {
 function parseMedia(raw: unknown): StrapiMedia | null {
   if (!raw) return null;
 
-  // v4 style wrapper (harmless if appears)
+  // v4 wrapper
   if (isRecord(raw) && "data" in raw) {
     const data = raw.data;
     if (!data || !isRecord(data)) return null;
-
-    const attrs =
-      "attributes" in data && isRecord(data.attributes) ? data.attributes : null;
-
+    const attrs = "attributes" in data && isRecord(data.attributes) ? data.attributes : null;
     return attrs ? parseMedia(attrs) : null;
   }
 
@@ -99,11 +109,7 @@ function bestImageUrl(media: StrapiMedia | null, base: string): string {
   if (!media) return "";
   const formats = media.formats ?? null;
   const candidate =
-    formats?.medium?.url ||
-    formats?.small?.url ||
-    formats?.thumbnail?.url ||
-    media.url;
-
+    formats?.medium?.url || formats?.small?.url || formats?.thumbnail?.url || media.url;
   return absoluteUrl(candidate, base);
 }
 
@@ -115,8 +121,7 @@ function parseTechnologies(raw: unknown): Technology[] {
     return raw.data
       .map((item): Technology | null => {
         if (!isRecord(item)) return null;
-        const attrs =
-          "attributes" in item && isRecord(item.attributes) ? item.attributes : item;
+        const attrs = "attributes" in item && isRecord(item.attributes) ? item.attributes : item;
 
         const name = asString(attrs.name);
         const slug = asString(attrs.slug);
@@ -148,16 +153,51 @@ function parseTechnologies(raw: unknown): Technology[] {
   return [];
 }
 
+function parseLocalizations(raw: unknown): ProjectLocalization[] {
+  if (!raw) return [];
+
+  // v4 wrapper: { data: [...] }
+  if (isRecord(raw) && "data" in raw && Array.isArray(raw.data)) {
+    return raw.data
+      .map((item): ProjectLocalization | null => {
+        if (!isRecord(item)) return null;
+        const attrs = "attributes" in item && isRecord(item.attributes) ? item.attributes : item;
+
+        const locale = asString(attrs.locale);
+        const slug = asString(attrs.slug);
+        if (!locale || !slug) return null;
+
+        return { locale, slug };
+      })
+      .filter((x): x is ProjectLocalization => x !== null);
+  }
+
+  // v5 can be array
+  if (Array.isArray(raw)) {
+    return raw
+      .map((x): ProjectLocalization | null => {
+        if (!isRecord(x)) return null;
+        const locale = asString(x.locale);
+        const slug = asString(x.slug);
+        if (!locale || !slug) return null;
+        return { locale, slug };
+      })
+      .filter((x): x is ProjectLocalization => x !== null);
+  }
+
+  return [];
+}
+
 function parseProject(item: unknown): Project | null {
   if (!isRecord(item)) return null;
 
-  const attrs =
-    "attributes" in item && isRecord(item.attributes) ? item.attributes : item;
+  const attrs = "attributes" in item && isRecord(item.attributes) ? item.attributes : item;
 
   const title = asString(attrs.title);
   const slug = asString(attrs.slug);
   if (!title || !slug) return null;
 
+  const locale = asString(attrs.locale);
   const shortDescription = asString(attrs.shortDescription);
   const description = asString(attrs.description);
 
@@ -166,20 +206,23 @@ function parseProject(item: unknown): Project | null {
 
   const image = parseMedia(attrs.image);
   const technologies = parseTechnologies(attrs.technologies);
+  const localizations = parseLocalizations(attrs.localizations);
 
   return {
     title,
     slug,
+    locale,
     shortDescription,
     description,
     liveUrl,
     githubUrl,
     image,
     technologies,
+    localizations,
   };
 }
 
-async function getProjectBySlug(slug: string): Promise<Project | null> {
+async function getProjectBySlug(slug: string, appLocale: string): Promise<Project | null> {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
   const TOKEN = process.env.REST_API_KEY;
@@ -187,20 +230,22 @@ async function getProjectBySlug(slug: string): Promise<Project | null> {
   if (!API_URL) throw new Error("Missing NEXT_PUBLIC_API_URL in .env");
   if (!BASE_URL) throw new Error("Missing NEXT_PUBLIC_BASE_URL in .env");
 
-  const params = new URLSearchParams();
+  const strapiLocale = toStrapiLocale(appLocale);
 
-  // filter by slug
+  const params = new URLSearchParams();
+  params.set("locale", strapiLocale);
   params.set("filters[slug][$eq]", slug);
 
-  // fields you want
+  // fields
   params.set("fields[0]", "title");
   params.set("fields[1]", "slug");
-  params.set("fields[2]", "shortDescription");
-  params.set("fields[3]", "description");
-  params.set("fields[4]", "liveUrl");
-  params.set("fields[5]", "githubUrl");
+  params.set("fields[2]", "locale");
+  params.set("fields[3]", "shortDescription");
+  params.set("fields[4]", "description");
+  params.set("fields[5]", "liveUrl");
+  params.set("fields[6]", "githubUrl");
 
-  // ✅ Strapi v5 SAFE populate (no "*")
+  // populate
   params.set("populate[image][fields][0]", "url");
   params.set("populate[image][fields][1]", "alternativeText");
   params.set("populate[image][fields][2]", "formats");
@@ -212,6 +257,10 @@ async function getProjectBySlug(slug: string): Promise<Project | null> {
   params.set("populate[technologies][populate][icon][fields][0]", "url");
   params.set("populate[technologies][populate][icon][fields][1]", "alternativeText");
   params.set("populate[technologies][populate][icon][fields][2]", "formats");
+
+  // ✅ key part: localizations so we can build correct EN/HR slug switch
+  params.set("populate[localizations][fields][0]", "slug");
+  params.set("populate[localizations][fields][1]", "locale");
 
   const url = `${API_URL}/projects?${params.toString()}`;
 
@@ -229,10 +278,7 @@ async function getProjectBySlug(slug: string): Promise<Project | null> {
   }
 
   const json: unknown = await res.json();
-
-  if (!isRecord(json) || !("data" in json) || !Array.isArray(json.data)) {
-    return null;
-  }
+  if (!isRecord(json) || !("data" in json) || !Array.isArray(json.data)) return null;
 
   const first = json.data[0];
   return parseProject(first);
@@ -244,23 +290,44 @@ type Props = {
 
 export default async function ProjectDetails({ slug }: Props) {
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:1337";
-  const project = await getProjectBySlug(slug);
 
+  // ✅ like AllProjects
+  const locale = await getLocale();
+  const t = await getTranslations("ProjectDetails");
+
+  const project = await getProjectBySlug(slug, locale);
   if (!project) notFound();
 
   const imgUrl = bestImageUrl(project.image ?? null, BASE_URL);
 
+  // ✅ build correct language-switch href (no 404)
+  const otherLocale: "hr" | "en" = locale.startsWith("hr") ? "en" : "hr";
+  const otherSlug =
+    project.localizations.find((l) => toAppLocale(l.locale) === otherLocale)?.slug ?? null;
+
+  // You can feed this to your LangSwitch if you want:
+  const otherHref = otherSlug ? `/${otherLocale}/projects/${otherSlug}` : `/${otherLocale}/projects`;
+
   return (
     <section className="w-full py-14">
       <div className="container mx-auto px-4">
-        {/* Breadcrumb / back */}
-        <div className="mb-6">
-          <Link href="/projects" className="text-sm text-sky-200 opacity-80 hover:opacity-100 underline underline-offset-4">
-            ← Back to projects
+        <div className="mb-6 flex items-center justify-between gap-3">
+          <Link
+            href={`/${locale}/projects`}
+            className="text-sm text-sky-200 opacity-80 hover:opacity-100 underline underline-offset-4"
+          >
+            ← {t("back")}
+          </Link>
+
+          {/* Optional: simple locale switch link using correct slug */}
+          <Link
+            href={otherHref}
+            className="text-sm text-sky-300 opacity-80 hover:opacity-100 underline underline-offset-4"
+          >
+            {otherLocale.toUpperCase()}
           </Link>
         </div>
 
-        {/* Header */}
         <div className="flex flex-col gap-6">
           <div>
             <h1 className="text-3xl text-sky-400 md:text-4xl font-semibold tracking-tight">
@@ -273,7 +340,6 @@ export default async function ProjectDetails({ slug }: Props) {
               </p>
             ) : null}
 
-            {/* CTA row */}
             <div className="mt-5 flex flex-wrap items-center gap-3">
               {project.liveUrl ? (
                 <a
@@ -282,7 +348,7 @@ export default async function ProjectDetails({ slug }: Props) {
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center rounded-xl border border-cyan-600 bg-white/20 px-4 py-2 text-sm font-medium text-sky-400 transition hover:bg-white/15"
                 >
-                  Visit live ↗
+                  {t("live")} ↗
                 </a>
               ) : null}
 
@@ -293,29 +359,30 @@ export default async function ProjectDetails({ slug }: Props) {
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center rounded-xl border border-cyan-600 bg-white/20 px-4 py-2 text-sm font-medium text-sky-400 transition hover:bg-white/15"
                 >
-                  View code ↗
+                  {t("github")} ↗
                 </a>
               ) : null}
             </div>
 
-            {/* Tech badges */}
             {project.technologies.length ? (
               <div className="mt-5 flex flex-wrap gap-2">
-                {project.technologies.map((t) => {
-                  const iconUrl = t.icon?.url ? absoluteUrl(t.icon.url, BASE_URL) : "";
-                  const style = t.color ? ({ boxShadow: `0 0 0 1px ${t.color}33` } as const) : undefined;
+                {project.technologies.map((tech) => {
+                  const iconUrl = tech.icon?.url ? absoluteUrl(tech.icon.url, BASE_URL) : "";
+                  const style: React.CSSProperties | undefined = tech.color
+                    ? { boxShadow: `0 0 0 1px ${tech.color}33` }
+                    : undefined;
 
                   return (
                     <span
-                      key={t.slug}
+                      key={tech.slug}
                       className="inline-flex items-center gap-2 rounded-full border border-cyan-700 bg-white/5 px-3 py-1 text-xs font-medium text-cyan-300"
-                      title={t.name}
-                      style={style as React.CSSProperties | undefined}
+                      title={tech.name}
+                      style={style}
                     >
                       {iconUrl ? (
-                        <Image src={iconUrl} alt={t.name} width={14} height={14} className="rounded-sm" />
+                        <Image src={iconUrl} alt={tech.name} width={14} height={14} className="rounded-sm" />
                       ) : null}
-                      <span>{t.name}</span>
+                      <span>{tech.name}</span>
                     </span>
                   );
                 })}
@@ -323,7 +390,6 @@ export default async function ProjectDetails({ slug }: Props) {
             ) : null}
           </div>
 
-          {/* Hero image */}
           {imgUrl ? (
             <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5">
               <div className="relative aspect-video w-full">
@@ -339,9 +405,8 @@ export default async function ProjectDetails({ slug }: Props) {
             </div>
           ) : null}
 
-          {/* Markdown body */}
           {project.description ? (
-            <div className="mt-2 rounded-2xl bg-linear-to-r from-slate-950/80 via-[#051542]/60 to-slate-950/80 backdrop-blur-xl ring-1 ring-sky-300/15 border-cyan-300/60 border group-hover/pin:border-white/20 transition duration-700 hover:bg-white/10 bg-white/5 p-6 text-sky-200">
+            <div className="mt-2 rounded-2xl bg-linear-to-r from-slate-950/80 via-[#051542]/60 to-slate-950/80 backdrop-blur-xl ring-1 ring-sky-300/15 border-cyan-300/60 border transition duration-700 hover:bg-white/10 p-6">
               <MarkdownRenderer content={project.description} />
             </div>
           ) : null}

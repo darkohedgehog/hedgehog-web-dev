@@ -154,6 +154,11 @@
     "noImage": "No image available",
     "details": "View details"
   },
+  "ProjectDetails": {
+    "back": "Back to projects",
+    "live": "View Live",
+    "github": "View Code"
+  },
   "CookieConsent": {
     "text1": "This website uses cookies to improve your user experience. Read more in our",
     "text2": "terms of use",

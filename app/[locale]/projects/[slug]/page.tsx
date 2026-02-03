@@ -1,6 +1,6 @@
 import ProjectDetails from "@/components/projects/ProjectDetails";
 
-export default async function Page({
+export default async function ProjectDetailsPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
