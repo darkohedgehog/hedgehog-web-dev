@@ -63,20 +63,20 @@
         "title18": "Naravno! Tu smo da pomognemo."
       },
       "AnimatedPin": {
-        "description1": "Web trgovina",
-        "description2": "Izrada svjetlećih reklama",
-        "description3": "Izrada poslovnog portfolija",
-        "description4": "Vaš savjetnik za kredite",
-        "description5": "Zvanična web stranica brenda Mi-Go",
-        "description6": "Ustanova u oblasti kulture Srpski kulturni centar Vukovar"
-      },
+        "live": "Vidi uživo",
+        "details": "Detalji",
+        "notfound": "Nema istaknutih projekata.",
+        "fallbackNotice": "Prikaz istaknutih projekata s podrazumijevanog jezika.",
+       "error": "Greška: {message}"
+     },
       "Projects": {
         "title1": "Pogledajte neke od",
         "title2": "najnovijih",
         "title3": "projekata",
         "title4": "Možda pronađete",
         "title5": "inspiraciju",
-        "title6": "ili ideju"
+        "title6": "ili ideju",
+        "button": "Više projekata"
       },
       "Approach": {
         "title1": "Planiranje & strategija",
