@@ -8,7 +8,11 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { usePathname } from "next/navigation";
 
-const Footer = () => {
+type FooterProps = {
+  currentYear: number;
+};
+
+const Footer = ({ currentYear }: FooterProps) => {
   const pathname = usePathname();
   const t = useTranslations("FooterData");
   const pathSegments = pathname.split("/");
@@ -102,7 +106,7 @@ const Footer = () => {
         </div>
         <hr className="my-6 border-cyan-800 mx-auto" />
         <div className="block text-sm text-cyan-400 text-center"> 
-          © {new Date().getFullYear()} Hedgehog. Sva prava zadržana.
+          © {currentYear} Hedgehog. Sva prava zadržana.
           <div className="flex items-center justify-center gap-2 mt-6 text-sm text-cyan-500 text-center"> 
             <a href='/sitemap.xml' target='_blank' rel="noopener noreferrer" className='mb-28'>
               sitemap.xml

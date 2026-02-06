@@ -341,23 +341,31 @@ export const NavbarLogo = ({ href = "/" }: { href?: string }) => {
   );
 };
 
-export const NavbarButton = ({
-  href,
-  as: Tag = "a",
-  children,
-  className,
-  variant = "primary",
-  ...props
-}: {
-  href?: string;
-  as?: React.ElementType;
+type NavbarButtonSharedProps = {
   children: React.ReactNode;
   className?: string;
   variant?: "primary" | "secondary" | "dark" | "gradient";
-} & (
-  | React.ComponentPropsWithoutRef<"a">
-  | React.ComponentPropsWithoutRef<"button">
-)) => {
+};
+
+type NavbarButtonAnchorProps = NavbarButtonSharedProps & {
+  href?: string;
+  as?: "a";
+} & Omit<
+  React.ComponentPropsWithoutRef<"a">,
+  "as" | "children" | "className" | "href"
+>;
+
+type NavbarButtonButtonProps = NavbarButtonSharedProps & {
+  as: "button";
+  href?: never;
+} & Omit<
+  React.ComponentPropsWithoutRef<"button">,
+  "as" | "children" | "className" | "href"
+>;
+
+type NavbarButtonProps = NavbarButtonAnchorProps | NavbarButtonButtonProps;
+
+export const NavbarButton = (props: NavbarButtonProps) => {
   const baseStyles =
     "px-4 py-2 rounded-md text-sm font-semibold relative cursor-pointer transition duration-200 inline-block text-center hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-300/40";
 
@@ -371,12 +379,9 @@ export const NavbarButton = ({
       "text-white bg-gradient-to-b from-sky-400 to-sky-600 border border-sky-300/40 shadow-[0_18px_60px_rgba(125,211,252,0.25)] hover:from-sky-300 hover:to-sky-600",
   };
 
-  return (
-    <Tag
-      href={href || undefined}
-      className={cn(baseStyles, variantStyles[variant], className)}
-      {...props}
-    >
+  const { children, className, variant = "primary" } = props;
+  const content = (
+    <>
       {/* premium button sheen */}
       {variant === "primary" && (
         <>
@@ -392,6 +397,33 @@ export const NavbarButton = ({
       )}
 
       <span className="relative z-10">{children}</span>
-    </Tag>
+    </>
+  );
+
+  if (props.as === "button") {
+    const { as: _as, href: _href, ...buttonProps } = props;
+    void _as;
+    void _href;
+
+    return (
+      <button
+        className={cn(baseStyles, variantStyles[variant], className)}
+        {...buttonProps}
+      >
+        {content}
+      </button>
+    );
+  }
+
+  const { as: _as, href, ...anchorProps } = props;
+  void _as;
+  return (
+    <a
+      href={href || undefined}
+      className={cn(baseStyles, variantStyles[variant], className)}
+      {...anchorProps}
+    >
+      {content}
+    </a>
   );
 };

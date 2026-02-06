@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -9,8 +9,23 @@ import { DottedBackground } from "@/components/background/DottedBackground";
 import { NavBar } from "@/components/navigation/NavBar";
 import Footer from "@/components/footer/Footer";
 
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
+const geistSans = localFont({
+  src: [
+    { path: "../../public/fonts/geist/geist-latin.woff2", style: "normal" },
+    { path: "../../public/fonts/geist/geist-latin-ext.woff2", style: "normal" },
+  ],
+  variable: "--font-geist-sans",
+  display: "swap",
+});
+
+const geistMono = localFont({
+  src: [
+    { path: "../../public/fonts/geist/geist-mono-latin.woff2", style: "normal" },
+    { path: "../../public/fonts/geist/geist-mono-latin-ext.woff2", style: "normal" },
+  ],
+  variable: "--font-geist-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Hedgehog Web Developer",
@@ -33,6 +48,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   }
 
   const messages = await getMessages();
+  const currentYear = new Date().getFullYear();
 
   return (
     <html lang={locale}>
@@ -41,7 +57,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           <DottedBackground />
           <NavBar />
           <div className="relative z-10 min-h-screen">{children}</div>
-          <Footer />
+          <Footer currentYear={currentYear} />
         </NextIntlClientProvider>
       </body>
     </html>
