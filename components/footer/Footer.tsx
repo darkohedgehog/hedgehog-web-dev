@@ -21,7 +21,7 @@ const Footer = ({ currentYear }: FooterProps) => {
 
   return (
     <>
-      <div className="w-full bg-linear-to-r from-slate-950/80 via-[#051542]/60 to-slate-950/80 backdrop-blur-xl ring-1 ring-sky-300/15 border-t border-cyan-300/50 px-4 md:px-8 lg:px-16">
+      <div className="w-full bg-linear-to-r from-slate-950/80 via-[#051542]/60 to-slate-950/80 backdrop-blur-xl ring-1 ring-sky-300/15 border-t border-cyan-300/50 px-4 md:px-8 lg:px-16 mx-auto">
         <div className="flex items-center justify-center gap-8">
           <Link href={`/${currentLocale}/`} className="flex items-center mt-6 justify-center">
           <Image

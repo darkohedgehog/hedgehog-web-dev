@@ -16,27 +16,27 @@ export const SocialBanner = ({
   const images = [
     {
       name: "GitHub",
-      src: "/assets/github.png",
+      src: "https://res.cloudinary.com/dhkmlqg4o/image/upload/v1770829066/github_iv1zxy.png",
       link: "https://github.com/darkohedgehog"
     },
     {
       name: "Facebook",
-      src: "/assets/facebook.png",
+      src: "https://res.cloudinary.com/dhkmlqg4o/image/upload/v1770829066/facebook_rgzm4k.png",
       link: "https://www.facebook.com/messages/t/100074828598715/?locale=hr_HR"
     },
     {
       name: "Instagram",
-      src: "/assets/instagram.png",
+      src: "https://res.cloudinary.com/dhkmlqg4o/image/upload/v1770829067/instagram_qnbdwe.png",
       link: "https://www.instagram.com/hedgehog_web_developer/"
     },
     {
       name: "LinkedIn",
-      src: "/assets/linkedin.png",
+      src: "https://res.cloudinary.com/dhkmlqg4o/image/upload/v1770829067/linkedin_deywun.png",
       link: "https://www.linkedin.com/in/darko-%C5%BEivi%C4%87/"
     },
     {
       name: "Email",
-      src: "/assets/email.png",
+      src: "https://res.cloudinary.com/dhkmlqg4o/image/upload/v1770829066/email_pn6vdm.png",
       link: "mailto:zivic.darko79@gmail.com"
     },
     

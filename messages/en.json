@@ -69,6 +69,43 @@
         "fallbackNotice": "Showing featured projects from the default language.",
        "error": "Error: {message}"
      },
+     "MyServices": {
+    "heading": "My services",
+    "description": "Focused on speed, UX, and clean code — so the project looks great and runs without headaches.",
+    "cards": {
+      "web": {
+        "title": "Websites & Web apps",
+        "items": [
+          "Landing pages and business sites (SEO + performance)",
+          "Next.js / React apps (App Router, i18n, CMS)",
+          "E-commerce (shop, checkout, integrations)",
+          "Admin panels and dashboards",
+          "UI animations (Framer Motion) + modern design"
+        ]
+      },
+      "maintenance": {
+        "title": "Maintenance & consulting",
+        "items": [
+          "Maintenance and regular updates (Next/Node/Strapi/WP)",
+          "Performance audit (Lighthouse, Core Web Vitals)",
+          "Deploy & DevOps (VPS, Nginx, pm2, SSL)",
+          "Security, backups, and monitoring",
+          "Technical consulting + feature planning"
+        ]
+      },
+      "powerbi": {
+        "title": "Power BI & data reporting",
+        "items": [
+          "Building and maintaining BI solutions for supply chain, sales, and finance needs",
+          "Working in Azure Data Warehouse environments: ETL/procedures, transformations, and model optimization",
+          "Designing and maintaining dimensional models (fact/dimension tables) aligned with business processes",
+          "Developing and optimizing DAX measures and calculations in tabular models",
+          "Creating and improving Power BI reports and dashboards for operational and management reporting",
+          "Collaborating with business teams to define KPIs and analytics requirements"
+        ]
+      }
+    }
+  },
       "Projects": {
         "title1": "Take a look at some of",
         "title2": "newest",

@@ -69,6 +69,43 @@
         "fallbackNotice": "Prikaz istaknutih projekata s podrazumijevanog jezika.",
        "error": "Greška: {message}"
      },
+     "MyServices": {
+    "heading": "Moje usluge",
+    "description": "Fokus na brzinu, UX i čist kod — da projekat izgleda brutalno i radi bez nerviranja",
+    "cards": {
+      "web": {
+        "title": "Web sajtovi & Web aplikacije",
+        "items": [
+          "Landing stranice i prezentacije (SEO + brzina)",
+          "Next.js / React aplikacije (App Router, i18n, CMS)",
+          "E-commerce (shop, checkout, integracije)",
+          "Admin paneli i dashboardi",
+          "UI animacije (Framer Motion) + moderni dizajn"
+        ]
+      },
+      "maintenance": {
+        "title": "Održavanje & savetovanje",
+        "items": [
+          "Održavanje i redovni update-i (Next/Node/Strapi/WP)",
+          "Performance audit (Lighthouse, Core Web Vitals)",
+          "Deploy & DevOps (VPS, Nginx, pm2, SSL)",
+          "Bezbednost, backup strategija i monitoring",
+          "Tehničke konsultacije + planiranje feature-a"
+        ]
+      },
+      "powerbi": {
+        "title": "Power BI & Data izveštaji",
+        "items": [
+          "Razvoj i održavanje BI rešenja za potrebe Supply Chain-a, prodaje i financija",
+          "Rad na Azure Data Warehouse okruženju: ETL/procedure, transformacije podataka i optimizacija modela",
+          "Dizajniranje i održavanje dimenzionih modela (fact/dimension tabele) prilagođene poslovnim procesima",
+          "Razvoj i optimizacija DAX mera i kalkulacije u tabular modelima",
+          "Kreiranje i unapređenje Power BI izveštaja i dashboard-a za operativno i menadžersko izveštavanje",
+          "Suradnja sa poslovnim timovima na definisanju KPI-jeva i analitičkih zahtjeva"
+        ]
+      }
+    }
+  },
       "Projects": {
         "title1": "Pogledajte neke od",
         "title2": "najnovijih",

@@ -1,53 +1,46 @@
-import React from "react";
-import { Code2, Wrench, LineChart } from "lucide-react";
+"use client";
 
-type Service = {
-  title: string;
+import React from "react";
+import { Code2, Wrench, LineChart, Zap } from "lucide-react";
+import { useTranslations } from "next-intl";
+
+type ServiceKey = "web" | "maintenance" | "powerbi";
+
+type ServiceConfig = {
+  key: ServiceKey;
   icon: React.ReactNode;
-  items: string[];
-  accentClass: string; // za suptilni glow tint
+  accentClass: string;
 };
 
-const services: Service[] = [
+const services: ServiceConfig[] = [
   {
-    title: "Web sajtovi & Web aplikacije",
+    key: "web",
     icon: <Code2 className="h-5 w-5" />,
-    items: [
-      "Landing stranice i prezentacije (SEO + brzina)",
-      "Next.js / React aplikacije (App Router, i18n, CMS)",
-      "E-commerce (shop, checkout, integracije)",
-      "Admin paneli i dashboardi",
-      "UI animacije (Framer Motion) + moderni dizajn",
-    ],
     accentClass: "shadow-cyan-500/20 ring-cyan-300/15",
   },
   {
-    title: "Održavanje & savetovanje",
+    key: "maintenance",
     icon: <Wrench className="h-5 w-5" />,
-    items: [
-      "Održavanje i redovni update-i (Next/Node/Strapi/WP)",
-      "Performance audit (Lighthouse, Core Web Vitals)",
-      "Deploy & DevOps (VPS, Nginx, pm2, SSL)",
-      "Bezbednost, backup strategija i monitoring",
-      "Tehničke konsultacije + planiranje feature-a",
-    ],
     accentClass: "shadow-sky-500/20 ring-sky-300/15",
   },
   {
-    title: "Power BI & Data izveštaji",
+    key: "powerbi",
     icon: <LineChart className="h-5 w-5" />,
-    items: [
-      "Interaktivni dashboard-i (prodaja, finansije, KPI)",
-      "Modelovanje podataka (Power Query + DAX osnove)",
-      "Automatski refresh i izvori (Excel/SQL/CSV/API)",
-      "Vizuali, drill-down, filteri, role-based prikaz",
-      "Izvoz i deljenje izveštaja za tim/klijente",
-    ],
     accentClass: "shadow-emerald-500/20 ring-emerald-300/15",
   },
 ];
 
-function ServiceCard({ title, icon, items, accentClass }: Service) {
+function ServiceCard({
+  title,
+  icon,
+  items,
+  accentClass,
+}: {
+  title: string;
+  icon: React.ReactNode;
+  items: string[];
+  accentClass: string;
+}) {
   return (
     <div
       className={[
@@ -89,29 +82,40 @@ function ServiceCard({ title, icon, items, accentClass }: Service) {
 }
 
 export default function MyServices() {
-  return (
-    <section className="container relative mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      {/* Title */}
-      <div className="mb-10">
-        <p className="text-xs tracking-widest uppercase text-cyan-400/80">
-          Šta radim
-        </p>
+  const t = useTranslations("MyServices");
 
-        <h2 className="mt-2 text-3xl sm:text-4xl font-bold text-cyan-50">
-          Moje usluge ⚡
+  return (
+    <section className="container relative mx-auto py-16 max-w-6xl">
+      {/* Title */}
+      <div className="mb-10 flex items-center justify-center flex-col text-center">
+        <h2 className="mt-2 text-3xl font-bold text-sky-400">
+          {t("heading")}
+          <span>
+            <Zap className="ml-4 inline-block h-5 w-5 animate-pulse duration-300 text-cyan-400" />
+          </span>
         </h2>
 
-        <p className="mt-3 max-w-2xl text-sm sm:text-base text-cyan-100/70">
-          Fokus na brzinu, UX i čist kod — da projekat izgleda brutalno i radi bez
-          nerviranja.
+        <p className="mt-3 max-w-2xl text-md text-sky-200">
+          {t("description")}
         </p>
       </div>
 
       {/* Cards */}
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-        {services.map((s) => (
-          <ServiceCard key={s.title} {...s} />
-        ))}
+        {services.map((s) => {
+          const title = t(`cards.${s.key}.title`);
+          const items = t.raw(`cards.${s.key}.items`) as string[];
+
+          return (
+            <ServiceCard
+              key={s.key}
+              title={title}
+              icon={s.icon}
+              items={items}
+              accentClass={s.accentClass}
+            />
+          );
+        })}
       </div>
     </section>
   );
