@@ -10,6 +10,8 @@ import { NavBar } from "@/components/navigation/NavBar";
 import Footer from "@/components/footer/Footer";
 import CookiesToast from "@/components/cookies/CookiesToast";
 
+import { SUPPORTED_LOCALES, type Locale, DEFAULT_LOCALE, buildAlternates } from "@/app/utils/seo";
+
 const geistSans = localFont({
   src: [
     { path: "../../public/fonts/geist/geist-latin.woff2", style: "normal" },
@@ -28,13 +30,27 @@ const geistMono = localFont({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "Hedgehog Web Developer",
-  description: "Izrada web aplikacija",
-};
+// ✅ Layout-level metadata (za /hr i /en root)
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale: raw } = await params;
+  const locale = (SUPPORTED_LOCALES.includes(raw as Locale) ? (raw as Locale) : DEFAULT_LOCALE);
 
-const SUPPORTED_LOCALES = ["hr", "en"] as const;
-type Locale = (typeof SUPPORTED_LOCALES)[number];
+  return {
+    title: {
+      default: "Hedgehog Web Dev",
+      template: "%s | Hedgehog Web Dev",
+    },
+    description:
+      locale === "hr"
+        ? "Profesionalna izrada web stranica, web aplikacija i web shopova (Next.js, React, SEO, brzina)."
+        : "Professional websites, web apps and e-commerce builds (Next.js, React, SEO, performance).",
+    alternates: buildAlternates(locale, "/"), // canonical: /hr ili /en
+  };
+}
 
 type Props = {
   children: React.ReactNode;
@@ -58,7 +74,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           <DottedBackground />
           <NavBar />
           <div className="relative z-10 min-h-screen">{children}</div>
-          <CookiesToast/>
+          <CookiesToast />
           <Footer currentYear={currentYear} />
         </NextIntlClientProvider>
       </body>
