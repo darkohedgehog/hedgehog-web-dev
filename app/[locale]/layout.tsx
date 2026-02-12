@@ -8,6 +8,7 @@ import "@/app/globals.css";
 import { DottedBackground } from "@/components/background/DottedBackground";
 import { NavBar } from "@/components/navigation/NavBar";
 import Footer from "@/components/footer/Footer";
+import CookiesToast from "@/components/cookies/CookiesToast";
 
 const geistSans = localFont({
   src: [
@@ -57,6 +58,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           <DottedBackground />
           <NavBar />
           <div className="relative z-10 min-h-screen">{children}</div>
+          <CookiesToast/>
           <Footer currentYear={currentYear} />
         </NextIntlClientProvider>
       </body>
