@@ -14,9 +14,9 @@ const OutroSection = () => {
 
   return (
     <div className="flex flex-col items-center py-16 max-w-6xl mx-auto">
-        <h1 className="text-center lg:max-w-[45vw] text-4xl font-bold text-sky-400">
+        <h2 className="text-center lg:max-w-[45vw] text-4xl font-bold text-sky-400">
         {t('title1')} <span className="text-sky-200 text-4xl">{t('title2')}</span> {t('title3')}
-        </h1>
+        </h2>
         <p className="md:mt-10 my-5 text-center text-2xl text-light font-bold text-sky-200">
         {t('title4')}
         </p>
@@ -25,7 +25,7 @@ const OutroSection = () => {
     <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
     <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-3 py-1 text-sm font-medium text-sky-300 backdrop-blur-3xl gap-3">
     {t('title5')}
-    <FaLocationArrow />
+    <FaLocationArrow aria-hidden="true" />
     </span>
     </button>
         </Link>

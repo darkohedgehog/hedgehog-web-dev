@@ -1,25 +1,42 @@
-import { AnimatedPin } from './AnimatedPin'
-import { useTranslations } from 'next-intl';
+import { getTranslations } from "next-intl/server";
+import { AnimatedPinClient } from "./AnimatedPinClient";
+import { fetchFeaturedProjectsWithFallback } from "@/lib/strapi/projects";
 
-const Projects = () => {
-  const t = useTranslations('Projects');
+type ProjectsProps = {
+  locale: string;
+};
+
+const Projects = async ({ locale }: ProjectsProps) => {
+  const t = await getTranslations("Projects");
+  let projects: Awaited<ReturnType<typeof fetchFeaturedProjectsWithFallback>>["projects"] = [];
+  let usedFallback = false;
+
+  try {
+    const fetched = await fetchFeaturedProjectsWithFallback(locale);
+    projects = fetched.projects;
+    usedFallback = fetched.usedFallback;
+  } catch {
+    projects = [];
+    usedFallback = false;
+  }
+
   return (
-    <div className='py-16 max-w-7xl mx-auto'>
-      <div className='flex items-center justify-center flex-col'>
-     <p className='mb-4 text-center text-3xl font-bold text-sky-400'>
-        <span className='mr-1'>{t('title1')}</span>
-        <span className='mx-1 text-accent'>{t('title2')}</span>
-        <span className='ml-1'>{t('title3')}</span>
-     </p>
-     <p className='mb-6 text-center text-2xl font-semibold text-sky-200'>
-        <span className='mr-1'>{t('title4')}</span>
-        <span className='mx-1 text-accent'>{t('title5')}</span>
-        <span className='ml-1'>{t('title6')}</span>
-     </p>
+    <div className="py-16 max-w-7xl mx-auto">
+      <div className="flex items-center justify-center flex-col">
+        <p className="mb-4 text-center text-3xl font-bold text-sky-400">
+          <span className="mr-1">{t("title1")}</span>
+          <span className="mx-1 text-accent">{t("title2")}</span>
+          <span className="ml-1">{t("title3")}</span>
+        </p>
+        <p className="mb-6 text-center text-2xl font-semibold text-sky-200">
+          <span className="mr-1">{t("title4")}</span>
+          <span className="mx-1 text-accent">{t("title5")}</span>
+          <span className="ml-1">{t("title6")}</span>
+        </p>
+      </div>
+      <AnimatedPinClient projects={projects} usedFallback={usedFallback} />
     </div>
-        <AnimatedPin />
-    </div>
-  )
-}
+  );
+};
 
-export default Projects
+export default Projects;

@@ -267,20 +267,20 @@ export default async function AllProjects() {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 items-end justify-between gap-4">
           <div>
-            <h2 className="text-3xl font-semibold tracking-tight text-cyan-300">
+            <h1 className="text-3xl font-semibold tracking-tight text-cyan-300">
               {t("title")}
-            </h2>
-            <p className="mt-2 text-sm opacity-75 text-cyan-500">
+            </h1>
+            <p className="mt-2 text-sm text-cyan-300">
               {t("description")}
             </p>
           </div>
-          <p className="text-sm opacity-70 text-cyan-600">
+          <p className="text-sm text-cyan-300">
             {t("total", { count: projects.length })}</p>
         </div>
 
         {projects.length === 0 ? (
           <div className="mt-8 rounded-2xl bg-linear-to-r from-slate-950/80 via-[#051542]/60 to-slate-950/80 backdrop-blur-xl ring-1 ring-sky-300/15 border-cyan-300/60 border group-hover/pin:border-white/20 transition duration-700 overflow-hidden p-6">
-            <p className="text-sm opacity-80 text-cyan-300 flex items-center justify-center">
+            <p className="text-sm text-cyan-200 flex items-center justify-center">
               {t("notfound")}
               </p>
           </div>
@@ -305,7 +305,7 @@ export default async function AllProjects() {
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
                       ) : (
-                        <div className="flex h-full w-full items-center justify-center bg-black/20 text-sm opacity-70">
+                        <div className="flex h-full w-full items-center justify-center bg-black/20 text-sm text-cyan-200">
                           {t("noImage")}
                         </div>
                       )}
@@ -323,7 +323,7 @@ export default async function AllProjects() {
                     </h3>
 
                     {p.shortDescription ? (
-                      <p className="mt-2 line-clamp-3 text-sm opacity-80 text-cyan-500">
+                      <p className="mt-2 line-clamp-3 text-sm text-cyan-300">
                         {p.shortDescription}
                       </p>
                     ) : null}

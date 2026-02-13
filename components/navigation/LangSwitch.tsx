@@ -31,6 +31,7 @@ const LangSwitch = () => {
         checked={checked}
         onCheckedChange={onCheckedChange}
         disabled={isPending}
+        aria-hidden="true"
       />
       <PiGlobeHemisphereWestThin className="text-cyan-400 w-6 h-6" />
     </div>

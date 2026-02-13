@@ -15,9 +15,9 @@ const ContactMe = () => {
         {/* Prvi div */}
         <div className={`${cardBase} flex flex-col justify-center p-8`}>
           <div className="mx-auto max-w-lg text-center">
-            <h1 className="text-2xl font-bold sm:text-3xl text-cyan-400 uppercase">
+            <h2 className="text-2xl font-bold sm:text-3xl text-cyan-400 uppercase">
               {t("title1")}
-            </h1>
+            </h2>
 
             <p className="mt-4 text-cyan-500 font-semibold text-lg">
               {t("paragraph1")}
@@ -33,7 +33,7 @@ const ContactMe = () => {
               href="mailto:zivic.darko79@gmail.com"
               className="text-cyan-500 hover:text-cyan-100 transition-all duration-300 flex gap-2 items-center justify-start"
             >
-              <AiOutlineMail className="w-6 h-6" />
+              <AiOutlineMail className="w-6 h-6" aria-hidden="true" />
               Email: zivic.darko79@gmail.com
             </Link>
 
@@ -41,7 +41,7 @@ const ContactMe = () => {
               href="tel:+385955074922"
               className="text-cyan-500 hover:text-cyan-100 transition-all duration-300 flex gap-2 items-center justify-start"
             >
-              <AiOutlinePhone className="w-6 h-6" />
+              <AiOutlinePhone className="w-6 h-6" aria-hidden="true" />
               {t("title3")} +385 95 507 4922
             </Link>
           </div>
@@ -49,9 +49,9 @@ const ContactMe = () => {
 
         {/* Drugi div */}
         <div className={`${cardBase} flex flex-col items-center justify-center p-8 overflow-hidden`}>
-          <h1 className="text-2xl lg:text-3xl font-semibold text-cyan-400 uppercase mb-4 text-center">
+          <h2 className="text-2xl lg:text-3xl font-semibold text-cyan-400 uppercase mb-4 text-center">
             {t("title4")}
-          </h1>
+          </h2>
 
           <div className="w-full flex-1 flex items-center justify-center">
             <LottieAnimation />

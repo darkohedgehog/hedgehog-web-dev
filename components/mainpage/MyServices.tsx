@@ -69,7 +69,7 @@ function ServiceCard({
         <h3 className="text-lg font-semibold text-cyan-100">{title}</h3>
       </div>
 
-      <ul className="mt-4 space-y-2 text-sm text-cyan-100/75">
+      <ul className="mt-4 space-y-2 text-sm text-cyan-100">
         {items.map((it) => (
           <li key={it} className="flex gap-2 leading-relaxed">
             <span className="mt-1.75 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-300/70" />

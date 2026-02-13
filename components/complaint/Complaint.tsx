@@ -29,7 +29,7 @@ const Complaint = () => {
     <Link
     href={'mailto:zivic.darko79@gmail.com'} target='blank'
     className="flex items-center gap-5">
-      <FiMail className="text-sky-200 w-8 h-8" />
+      <FiMail className="text-sky-200 w-8 h-8" aria-hidden="true" />
       <div>
         <p className='text-xl'>zivic.darko79@gmail.com</p>
       </div>
@@ -40,7 +40,7 @@ const Complaint = () => {
     </p>
     <div className='flex items-center justify-center'>
     <div className="flex items-center gap-5">
-      <FiPhoneCall className="text-sky-200 w-8 h-8" />
+      <FiPhoneCall className="text-sky-200 w-8 h-8" aria-hidden="true" />
       <div>
         <p className='text-xl'>+ 385 95 507 4922</p>
       </div>

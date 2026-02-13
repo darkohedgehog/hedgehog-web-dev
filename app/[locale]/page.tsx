@@ -6,15 +6,19 @@ import Projects from "@/components/mainpage/Projects";
 import { TypewriterEffectHero } from "@/components/mainpage/TypewriterEffectHero";
 
 
-export default function HomePage() {
- 
+export default async function HomePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
 
   return (
     <>
      <TypewriterEffectHero />
      <IntroductionWrapper />
      <MyServices />
-      <Projects />
+      <Projects locale={locale} />
       <ApproachWrapper />
       <OutroSection />
     </>

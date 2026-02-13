@@ -117,12 +117,15 @@ export const TypewriterEffectSmooth = ({
       text: word.text.split(""),
     };
   });
+  const textClass =
+    "pb-2 text-lg sm:text-base md:text-xl lg:text-3xl xl:text-5xl font-bold whitespace-nowrap";
+
   const renderWords = () => {
     return (
-      <div>
+      <span className="inline">
         {wordsArray.map((word, idx) => {
           return (
-            <div key={`word-${idx}`} className="inline-block">
+            <span key={`word-${idx}`} className="inline-block">
               {word.text.map((char, index) => (
                 <span
                   key={`char-${index}`}
@@ -132,56 +135,75 @@ export const TypewriterEffectSmooth = ({
                 </span>
               ))}
               &nbsp;
-            </div>
+            </span>
           );
         })}
-      </div>
+      </span>
     );
   };
 
   return (
-    <div className={cn("flex space-x-1 my-6", className)}>
-      <motion.div
-        className="overflow-hidden pb-2"
-        initial={{
-          width: "0%",
-        }}
-        whileInView={{
-          width: "fit-content",
-        }}
-        transition={{
-          duration: 2,
-          ease: "linear",
-          delay: 1,
-        }}
-      >
-        <div
-          className="text-lg sm:text-base md:text-xl lg:text:3xl xl:text-5xl font-bold"
-          style={{
-            whiteSpace: "nowrap",
+    <div
+      className={cn(
+        "my-6 min-h-7 sm:min-h-8 md:min-h-9 xl:min-h-12",
+        className
+      )}
+    >
+      <div className="relative inline-block align-top">
+        {/* Reserve final width from first paint to prevent CLS */}
+        <div aria-hidden className={cn("invisible", textClass)}>
+          {renderWords()}
+        </div>
+
+        <motion.div
+          className="absolute inset-0 overflow-hidden pb-2"
+          initial={{
+            width: "0%",
+          }}
+          whileInView={{
+            width: "100%",
+          }}
+          transition={{
+            duration: 2,
+            ease: "linear",
+            delay: 1,
           }}
         >
-          {renderWords()}{" "}
-        </div>{" "}
-      </motion.div>
-      <motion.span
-        initial={{
-          opacity: 0,
-        }}
-        animate={{
-          opacity: 1,
-        }}
-        transition={{
-          duration: 0.8,
+          <div className={textClass}>
+            {renderWords()}
+          </div>
+        </motion.div>
 
-          repeat: Infinity,
-          repeatType: "reverse",
-        }}
-        className={cn(
-          "block rounded-sm w-1  h-4 sm:h-6 xl:h-12 bg-sky-500",
-          cursorClassName
-        )}
-      ></motion.span>
+        <motion.span
+  initial={{
+    left: 0,
+    opacity: 0,
+  }}
+  whileInView={{
+    left: "100%",
+  }}
+  animate={{
+    opacity: 1,
+  }}
+  transition={{
+    left: { duration: 2, ease: "linear", delay: 1 },
+    opacity: {
+      duration: 0.8,
+      repeat: Infinity,
+      repeatType: "reverse",
+    },
+  }}
+  className={cn(
+    "pointer-events-none absolute top-0 rounded-sm w-1 h-4 sm:h-6 xl:h-12 bg-sky-500",
+    cursorClassName
+  )}
+/>
+      </div>
+
+      <span
+        aria-hidden
+        className="invisible inline-block rounded-sm w-1 h-4 sm:h-6 xl:h-12 align-top"
+      ></span>
     </div>
   );
 };

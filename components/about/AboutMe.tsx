@@ -144,6 +144,9 @@ export function AboutMe() {
 
   return (
     <Terminal>
+      <h1 className="sr-only">
+        {t("title1")} {t("title2")}
+      </h1>
       <TypingAnimation>&gt; npm install hedgehog@latest init</TypingAnimation>
 
       <AnimatedSpan className="text-green-500">✔ Next.js.</AnimatedSpan>

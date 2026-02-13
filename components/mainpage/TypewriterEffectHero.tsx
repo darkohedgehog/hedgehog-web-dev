@@ -31,9 +31,9 @@ export function TypewriterEffectHero() {
       {/* Social banner */}
       <SocialBanner />
       {/* Title */}
-      <p className="text-sky-100 text-sm sm:text-base mb-4">
+      <h1 className="text-sky-100 text-sm sm:text-base mb-4">
         {t("title")}
-      </p>
+      </h1>
 
       {/* Typewriter */}
       <TypewriterEffectSmooth words={words} />
@@ -46,7 +46,7 @@ export function TypewriterEffectHero() {
                      text-sm transition font-semibold"
         >
           <span className="flex items-center justify-center gap-2">
-          <MdCall /> {t("button1")}
+          <MdCall aria-hidden="true" /> {t("button1")}
           </span>
         </Link>
 
@@ -58,7 +58,7 @@ export function TypewriterEffectHero() {
                      hover:bg-neutral-100 transition"
         >
           <span className="flex items-center justify-center gap-2">
-          <TfiAnnouncement /> {t("button2")}
+          <TfiAnnouncement aria-hidden="true" /> {t("button2")}
           </span>
         </Link>
       </div>
@@ -89,6 +89,7 @@ export function TypewriterEffectHero() {
                 sizes="(max-width: 768px) 100vw, 1200px"
                 className="object-cover"
                 priority
+                {...({ fetchPriority: "high" } as const)}
               />
             </div>
 

@@ -62,14 +62,17 @@ export const SocialBanner = ({
                   href={image.link ? image.link : '#'}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={`Open ${image.name}`}
+                  className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 rounded-full"
                 >
                   <Image
                     height={100}
                     width={100}
                     src={image.src}
-                    alt={image.name}
-                    priority
+                    alt=""
+                    aria-hidden="true"
                     className="h-8 w-8 object-cover object-top md:h-14 md:w-14"
+                    sizes="56px"
                   />
                   </Link>
                 </motion.div>
