@@ -1,4 +1,3 @@
-// components/projects/ProjectDetails.tsx
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -23,7 +22,7 @@ type Technology = {
 };
 
 type ProjectLocalization = {
-  locale: string; // strapi locale: "hr-HR" | "en"
+  locale: string; // "hr-HR" | "en"
   slug: string;
 };
 
@@ -40,13 +39,17 @@ type Project = {
   localizations: ProjectLocalization[];
 };
 
-function toStrapiLocale(appLocale: string): string {
-  if (appLocale.toLowerCase().startsWith("hr")) return "hr-HR";
-  if (appLocale.toLowerCase().startsWith("en")) return "en";
-  return "hr-HR";
+type AppLocale = "hr" | "en";
+
+function normalizeAppLocale(value: string): AppLocale {
+  return value.toLowerCase().startsWith("hr") ? "hr" : "en";
 }
 
-function toAppLocale(strapiLocale: string): "hr" | "en" {
+function toStrapiLocale(appLocale: AppLocale): string {
+  return appLocale === "hr" ? "hr-HR" : "en";
+}
+
+function toAppLocale(strapiLocale: string): AppLocale {
   return strapiLocale.toLowerCase().startsWith("hr") ? "hr" : "en";
 }
 
@@ -61,21 +64,15 @@ function asString(value: unknown): string | null {
 function absoluteUrl(pathOrUrl: string, base: string): string {
   if (!pathOrUrl) return "";
   if (pathOrUrl.startsWith("http://") || pathOrUrl.startsWith("https://")) return pathOrUrl;
-  return `${base}${pathOrUrl}`;
+
+  // Ensure exactly one slash between base and path
+  const b = base.endsWith("/") ? base.slice(0, -1) : base;
+  const p = pathOrUrl.startsWith("/") ? pathOrUrl : `/${pathOrUrl}`;
+  return `${b}${p}`;
 }
 
 function parseMedia(raw: unknown): StrapiMedia | null {
-  if (!raw) return null;
-
-  // v4 wrapper
-  if (isRecord(raw) && "data" in raw) {
-    const data = raw.data;
-    if (!data || !isRecord(data)) return null;
-    const attrs = "attributes" in data && isRecord(data.attributes) ? data.attributes : null;
-    return attrs ? parseMedia(attrs) : null;
-  }
-
-  if (!isRecord(raw)) return null;
+  if (!raw || !isRecord(raw)) return null;
 
   const url = asString(raw.url);
   if (!url) return null;
@@ -114,99 +111,55 @@ function bestImageUrl(media: StrapiMedia | null, base: string): string {
 }
 
 function parseTechnologies(raw: unknown): Technology[] {
-  if (!raw) return [];
+  if (!Array.isArray(raw)) return [];
 
-  // v4 wrapper
-  if (isRecord(raw) && "data" in raw && Array.isArray(raw.data)) {
-    return raw.data
-      .map((item): Technology | null => {
-        if (!isRecord(item)) return null;
-        const attrs = "attributes" in item && isRecord(item.attributes) ? item.attributes : item;
+  return raw
+    .map((t): Technology | null => {
+      if (!isRecord(t)) return null;
 
-        const name = asString(attrs.name);
-        const slug = asString(attrs.slug);
-        if (!name || !slug) return null;
+      const name = asString(t.name);
+      const slug = asString(t.slug);
+      if (!name || !slug) return null;
 
-        const color = asString(attrs.color);
-        const icon = parseMedia(attrs.icon);
+      const color = asString(t.color);
+      const icon = parseMedia(t.icon);
 
-        return { name, slug, color, icon };
-      })
-      .filter((x): x is Technology => x !== null);
-  }
-
-  // v5 array
-  if (Array.isArray(raw)) {
-    return raw
-      .map((t): Technology | null => {
-        if (!isRecord(t)) return null;
-        const name = asString(t.name);
-        const slug = asString(t.slug);
-        if (!name || !slug) return null;
-        const color = asString(t.color);
-        const icon = parseMedia(t.icon);
-        return { name, slug, color, icon };
-      })
-      .filter((x): x is Technology => x !== null);
-  }
-
-  return [];
+      return { name, slug, color, icon };
+    })
+    .filter((x): x is Technology => x !== null);
 }
 
 function parseLocalizations(raw: unknown): ProjectLocalization[] {
-  if (!raw) return [];
+  if (!Array.isArray(raw)) return [];
 
-  // v4 wrapper: { data: [...] }
-  if (isRecord(raw) && "data" in raw && Array.isArray(raw.data)) {
-    return raw.data
-      .map((item): ProjectLocalization | null => {
-        if (!isRecord(item)) return null;
-        const attrs = "attributes" in item && isRecord(item.attributes) ? item.attributes : item;
-
-        const locale = asString(attrs.locale);
-        const slug = asString(attrs.slug);
-        if (!locale || !slug) return null;
-
-        return { locale, slug };
-      })
-      .filter((x): x is ProjectLocalization => x !== null);
-  }
-
-  // v5 can be array
-  if (Array.isArray(raw)) {
-    return raw
-      .map((x): ProjectLocalization | null => {
-        if (!isRecord(x)) return null;
-        const locale = asString(x.locale);
-        const slug = asString(x.slug);
-        if (!locale || !slug) return null;
-        return { locale, slug };
-      })
-      .filter((x): x is ProjectLocalization => x !== null);
-  }
-
-  return [];
+  return raw
+    .map((x): ProjectLocalization | null => {
+      if (!isRecord(x)) return null;
+      const locale = asString(x.locale);
+      const slug = asString(x.slug);
+      if (!locale || !slug) return null;
+      return { locale, slug };
+    })
+    .filter((x): x is ProjectLocalization => x !== null);
 }
 
 function parseProject(item: unknown): Project | null {
   if (!isRecord(item)) return null;
 
-  const attrs = "attributes" in item && isRecord(item.attributes) ? item.attributes : item;
-
-  const title = asString(attrs.title);
-  const slug = asString(attrs.slug);
+  const title = asString(item.title);
+  const slug = asString(item.slug);
   if (!title || !slug) return null;
 
-  const locale = asString(attrs.locale);
-  const shortDescription = asString(attrs.shortDescription);
-  const description = asString(attrs.description);
+  const locale = asString(item.locale);
+  const shortDescription = asString(item.shortDescription);
+  const description = asString(item.description);
 
-  const liveUrl = asString(attrs.liveUrl);
-  const githubUrl = asString(attrs.githubUrl);
+  const liveUrl = asString(item.liveUrl);
+  const githubUrl = asString(item.githubUrl);
 
-  const image = parseMedia(attrs.image);
-  const technologies = parseTechnologies(attrs.technologies);
-  const localizations = parseLocalizations(attrs.localizations);
+  const image = parseMedia(item.image);
+  const technologies = parseTechnologies(item.technologies);
+  const localizations = parseLocalizations(item.localizations);
 
   return {
     title,
@@ -222,7 +175,7 @@ function parseProject(item: unknown): Project | null {
   };
 }
 
-async function getProjectBySlug(slug: string, appLocale: string): Promise<Project | null> {
+async function getProjectBySlug(slug: string, appLocale: AppLocale): Promise<Project | null> {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
   const TOKEN = process.env.REST_API_KEY;
@@ -258,7 +211,7 @@ async function getProjectBySlug(slug: string, appLocale: string): Promise<Projec
   params.set("populate[technologies][populate][icon][fields][1]", "alternativeText");
   params.set("populate[technologies][populate][icon][fields][2]", "formats");
 
-  // ✅ key part: localizations so we can build correct EN/HR slug switch
+  // localizations for correct EN/HR slug switch
   params.set("populate[localizations][fields][0]", "slug");
   params.set("populate[localizations][fields][1]", "locale");
 
@@ -278,21 +231,22 @@ async function getProjectBySlug(slug: string, appLocale: string): Promise<Projec
   }
 
   const json: unknown = await res.json();
-  if (!isRecord(json) || !("data" in json) || !Array.isArray(json.data)) return null;
+  if (!isRecord(json) || !("data" in json) || !Array.isArray((json as { data?: unknown }).data))
+    return null;
 
-  const first = json.data[0];
+  const first = (json as { data: unknown[] }).data[0];
   return parseProject(first);
 }
 
-type Props = {
-  slug: string;
-};
+type Props = { slug: string };
 
 export default async function ProjectDetails({ slug }: Props) {
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:1337";
 
-  // ✅ like AllProjects
-  const locale = await getLocale();
+  // Normalize locale for routing (/hr, /en)
+  const intlLocaleRaw = await getLocale();
+  const locale: AppLocale = normalizeAppLocale(intlLocaleRaw);
+
   const t = await getTranslations("ProjectDetails");
 
   const project = await getProjectBySlug(slug, locale);
@@ -300,12 +254,13 @@ export default async function ProjectDetails({ slug }: Props) {
 
   const imgUrl = bestImageUrl(project.image ?? null, BASE_URL);
 
-  // ✅ build correct language-switch href (no 404)
-  const otherLocale: "hr" | "en" = locale.startsWith("hr") ? "en" : "hr";
+  // Always has both translations (per your rule)
+  const otherLocale: AppLocale = locale === "hr" ? "en" : "hr";
   const otherSlug =
     project.localizations.find((l) => toAppLocale(l.locale) === otherLocale)?.slug ?? null;
 
-  // You can feed this to your LangSwitch if you want:
+  // Since you guarantee translations exist, we can assume otherSlug exists,
+  // but keep a safe fallback anyway.
   const otherHref = otherSlug ? `/${otherLocale}/projects/${otherSlug}` : `/${otherLocale}/projects`;
 
   return (
@@ -319,10 +274,10 @@ export default async function ProjectDetails({ slug }: Props) {
             ← {t("back")}
           </Link>
 
-          {/* Optional: simple locale switch link using correct slug */}
           <Link
             href={otherHref}
             className="text-sm text-sky-300 opacity-80 hover:opacity-100 underline underline-offset-4"
+            aria-label={`Switch language to ${otherLocale.toUpperCase()}`}
           >
             {otherLocale.toUpperCase()}
           </Link>
@@ -380,7 +335,13 @@ export default async function ProjectDetails({ slug }: Props) {
                       style={style}
                     >
                       {iconUrl ? (
-                        <Image src={iconUrl} alt={tech.name} width={14} height={14} className="rounded-sm" />
+                        <Image
+                          src={iconUrl}
+                          alt={tech.name}
+                          width={14}
+                          height={14}
+                          className="rounded-sm w-6 h-6 object-cover"
+                        />
                       ) : null}
                       <span>{tech.name}</span>
                     </span>

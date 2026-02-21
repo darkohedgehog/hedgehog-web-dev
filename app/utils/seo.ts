@@ -1,4 +1,3 @@
-// app/utils/seo.ts
 import type { Metadata } from "next";
 import siteMetadata from "@/app/utils/siteMetaData";
 
