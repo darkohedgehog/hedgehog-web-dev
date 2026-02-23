@@ -4,6 +4,7 @@ import MyServices from "@/components/mainpage/MyServices";
 import OutroSection from "@/components/mainpage/OutroSection";
 import Projects from "@/components/mainpage/Projects";
 import { TypewriterEffectHero } from "@/components/mainpage/TypewriterEffectHero";
+import FaqSection from "@/components/mainpage/FaqSection";
 
 
 export default async function HomePage({
@@ -21,6 +22,7 @@ export default async function HomePage({
       <Projects locale={locale} />
       <ApproachWrapper />
       <OutroSection />
+      <FaqSection />
     </>
   );
 }

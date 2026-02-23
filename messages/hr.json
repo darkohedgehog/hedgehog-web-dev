@@ -274,4 +274,47 @@
   "li4":"Naziv usluge",
   "li5":"Razlog prigovora ili reklamacije"
 }
+  ,
+  "FaqSection": {
+    "title": "Često postavljana pitanja",
+    "subtitle": "Kratki odgovori o rokovima, cijenama i podršci nakon objave.",
+    "expandAll": "Otvori sva pitanja",
+    "collapseAll": "Zatvori sva pitanja",
+    "microcopy": "Niste pronašli odgovor?",
+    "contactLink": "Kontaktirajte me",
+    "items": [
+      {
+        "q": "Koliko obično traje projekt?",
+        "a": "Rokovi variraju: landing stranice 1–2 tjedna, poslovne stranice 2–4 tjedna, složene web aplikacije 3–6+ tjedana ovisno o opsegu. Nakon razgovora dajemo precizniju procjenu."
+      },
+      {
+        "q": "Kolika je cijena / što utječe na trošak?",
+        "a": "Cijena ovisi o opsegu: dizajn, broj stranica, integracije, e‑commerce i dodatne funkcionalnosti. Nudim transparentne ponude — kontaktirajte me za besplatnu procjenu."
+      },
+      {
+        "q": "Što vam treba od klijenta za početak?",
+        "a": "Osnovni materijali (logo, boje brenda), sadržaj (tekstovi/slike), primjeri željenog stila, pristup postojećem hostingu ili CMS‑u ako postoji i pravovremeni povratni komentari."
+      },
+      {
+        "q": "Nudite li održavanje/podršku nakon objave?",
+        "a": "Da — nudim planove održavanja, ažuriranja i retainer podršku prilagođenu vašim potrebama (sigurnost, backup, ažuriranje sadržaja)."
+      },
+      {
+        "q": "Možete li redizajnirati postojeću web stranicu?",
+        "a": "Naravno. Mogu modernizirati dizajn, poboljšati performanse, migrirati na Next.js ili izraditi novu verziju dok čuvam SEO i sadržaj."
+      },
+      {
+        "q": "Pružate li postavljanje hostinga/domena/SSL?",
+        "a": "Mogu pomoći s postavkom hostinga, DNS‑a i SSL‑a, ili savjetovati o opcijama (VPS, Vercel, Netlify) i obaviti deploy za vas."
+      },
+      {
+        "q": "Radite li e‑commerce (košarica, plaćanja)?",
+        "a": "Da — izrađujem e‑commerce trgovine s košaricom i integracijama plaćanja. Cijena ovisi o veličini kataloga i integracijama."
+      },
+      {
+        "q": "SEO / performanse / poboljšanja Lighthouse rezultata",
+        "a": "Optimiziram za performanse i SEO (Lighthouse, Core Web Vitals, meta tagovi, strukturirani podaci) kako bi stranica brže učitavala i bolje rangirala."
+      }
+    ]
+  }
 }

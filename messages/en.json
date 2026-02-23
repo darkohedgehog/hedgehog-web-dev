@@ -273,5 +273,47 @@
     "li3": "Enter the order number and date",
     "li4": "Service name",
     "li5": "Reason for the complaint or grievance"
-  }             
+  },
+  "FaqSection": {
+    "title": "Frequently asked questions",
+    "subtitle": "Quick answers about projects, pricing, and post-launch support.",
+    "expandAll": "Expand all",
+    "collapseAll": "Collapse all",
+    "microcopy": "Didn’t find an answer?",
+    "contactLink": "Contact me",
+    "items": [
+      {
+        "q": "How long does a typical project take?",
+        "a": "Timelines vary: landing pages 1–2 weeks, small business sites 2–4 weeks, complex web apps 3–6+ weeks depending on scope. We'll give a clearer estimate after discussing requirements."
+      },
+      {
+        "q": "What is the price / what affects cost?",
+        "a": "Price depends on scope: design, number of pages, integrations, third-party services, and custom features. I provide transparent quotes — contact me for a free estimation call."
+      },
+      {
+        "q": "What do you need from the client to start?",
+        "a": "Primary assets (logo, brand colors), content (text/images), examples of desired style, access to existing hosting or CMS if any, and timely feedback during review cycles."
+      },
+      {
+        "q": "Do you offer maintenance/support after launch?",
+        "a": "Yes — I offer post-launch maintenance plans, updates, and retainer-based support tailored to your needs (security, backups, content updates)."
+      },
+      {
+        "q": "Can you redesign an existing website?",
+        "a": "Absolutely. I can modernize the design, improve performance, migrate to Next.js, or rebuild from scratch while preserving SEO and content."
+      },
+      {
+        "q": "Do you provide hosting/domain/SSL setup?",
+        "a": "I can help set up hosting, DNS, and SSL, or advise on options (VPS, Vercel, Netlify) and perform deployments for you."
+      },
+      {
+        "q": "Do you build e-commerce (cart, payments)?",
+        "a": "Yes — I build e-commerce stores with carts, payment integrations, and order flow. Pricing depends on catalog size and integrations."
+      },
+      {
+        "q": "SEO / performance / Lighthouse improvements",
+        "a": "I optimize for performance and SEO (Lighthouse, Core Web Vitals, meta tags, structured data) to help your site rank and load fast."
+      }
+    ]
+  }
 }
