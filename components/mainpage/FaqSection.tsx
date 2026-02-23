@@ -104,7 +104,7 @@ export default function FaqSection() {
             <p className="mt-2 text-sky-200 mx-auto max-w-2xl text-center">{t("subtitle")}</p>
 
             <div className="mt-6 flex items-center gap-4">
-              <div className="flex-1 flex items-center justify-start md:justify-center">
+              <div className="flex items-center justify-center gap-4">
                 <span className="inline-flex items-center gap-2 bg-white/4 px-3 py-1 rounded-full text-sky-200 ring-1 ring-sky-400/12">
                   <FiHelpCircle className="w-4 h-4 text-sky-300" aria-hidden />
                   <span className="font-medium">FAQ</span>
