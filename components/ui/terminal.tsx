@@ -45,7 +45,6 @@ export const AnimatedSpan = ({
   const sequence = useSequence()
   const itemIndex = useItemIndex()
 
- 
   const shouldAnimate = useMemo(() => {
     if (sequence && itemIndex !== null) {
       if (!sequence.sequenceStarted) return false
@@ -54,6 +53,7 @@ export const AnimatedSpan = ({
     return startOnView ? isInView : true
   }, [sequence, itemIndex, startOnView, isInView])
 
+  // kad smo u sekvenci, delay se kontroliše redosledom; van sekvence delay radi normalno
   const computedDelay = sequence ? 0 : delay / 1000
 
   return (
@@ -66,7 +66,6 @@ export const AnimatedSpan = ({
       onAnimationComplete={() => {
         if (!sequence) return
         if (itemIndex === null) return
-        // Poziva se kad animacija stvarno završi (prvi put kad postane vidljivo)
         sequence.completeItem(itemIndex)
       }}
       {...props}
@@ -113,7 +112,7 @@ export const TypingAnimation = ({
 
   const [displayedText, setDisplayedText] = useState<string>("")
 
-  // ✅ ref ide na wrapper, ne na motion komponentu
+  // ref ide na wrapper (contents), ne na motion komponentu
   const inViewRef = useRef<HTMLSpanElement | null>(null)
   const isInView = useInView(inViewRef, { amount: 0.3, once: true })
 
@@ -184,12 +183,8 @@ export const TypingAnimation = ({
   }, [startCondition, children, duration, delay, sequence, itemIndex])
 
   return (
-    // ✅ ovaj wrapper samo služi za inView ref
     <span ref={inViewRef} className="contents">
-      <MotionTag
-        className={cn("text-sm font-normal tracking-tight", className)}
-        {...props}
-      >
+      <MotionTag className={cn("text-sm font-normal tracking-tight", className)} {...props}>
         {displayedText}
       </MotionTag>
     </span>
@@ -229,14 +224,32 @@ export const Terminal = ({
     }
   }, [sequence, completeItem, activeIndex, sequenceHasStarted])
 
+  // ✅ ključna izmena:
+  // - sekvencu dobijaju SAMO TypingAnimation i AnimatedSpan
+  // - ostala deca se renderuju normalno i NE mogu blokirati redosled
   const wrappedChildren = useMemo(() => {
     if (!sequence) return children
+
     const array = Children.toArray(children)
-    return array.map((child, index) => (
-      <ItemIndexContext.Provider key={index} value={index}>
-        {child as React.ReactNode}
-      </ItemIndexContext.Provider>
-    ))
+    let seqIndex = 0
+
+    return array.map((child, i) => {
+      // whitespace / tekst čvorove ne sekvenciramo
+      if (typeof child === "string" || typeof child === "number") return child
+      if (!React.isValidElement(child)) return child
+
+      const isSequenced = child.type === TypingAnimation || child.type === AnimatedSpan
+      if (!isSequenced) return child
+
+      const current = seqIndex
+      seqIndex += 1
+
+      return (
+        <ItemIndexContext.Provider key={i} value={current}>
+          {child}
+        </ItemIndexContext.Provider>
+      )
+    })
   }, [children, sequence])
 
   const content = (
@@ -254,6 +267,7 @@ export const Terminal = ({
           <div className="h-2 w-2 rounded-full bg-green-500" />
         </div>
       </div>
+
       <pre className="p-4">
         <code className="grid gap-y-1 overflow-auto">{wrappedChildren}</code>
       </pre>
@@ -262,9 +276,5 @@ export const Terminal = ({
 
   if (!sequence) return content
 
-  return (
-    <SequenceContext.Provider value={contextValue}>
-      {content}
-    </SequenceContext.Provider>
-  )
+  return <SequenceContext.Provider value={contextValue}>{content}</SequenceContext.Provider>
 }

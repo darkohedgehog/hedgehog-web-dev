@@ -155,7 +155,6 @@ export function AboutMe() {
       <AnimatedSpan className="text-green-500">✔ PostgreSQL.</AnimatedSpan>
       <AnimatedSpan className="text-green-500">✔ Strapi.</AnimatedSpan>
       <AnimatedSpan className="text-green-500">✔ WordPress.</AnimatedSpan>
-      <AnimatedSpan className="text-green-500">✔ Learning MySQL.</AnimatedSpan>
       <AnimatedSpan className="text-green-500">✔ Installing dependencies.</AnimatedSpan>
 
       <AnimatedSpan className="text-blue-500">
