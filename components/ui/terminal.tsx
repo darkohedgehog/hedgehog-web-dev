@@ -224,9 +224,7 @@ export const Terminal = ({
     }
   }, [sequence, completeItem, activeIndex, sequenceHasStarted])
 
-  // ✅ ključna izmena:
-  // - sekvencu dobijaju SAMO TypingAnimation i AnimatedSpan
-  // - ostala deca se renderuju normalno i NE mogu blokirati redosled
+
   const wrappedChildren = useMemo(() => {
     if (!sequence) return children
 

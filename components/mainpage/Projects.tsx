@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { AnimatedPinClient } from "./AnimatedPinClient";
 import { fetchFeaturedProjectsWithFallback } from "@/lib/strapi/projects";
+import ProjectButton from "../ui/ProjectButton";
 
 type ProjectsProps = {
   locale: string;
@@ -35,6 +36,9 @@ const Projects = async ({ locale }: ProjectsProps) => {
         </p>
       </div>
       <AnimatedPinClient projects={projects} usedFallback={usedFallback} />
+      <div className="mt-32 flex items-center justify-center">
+      <ProjectButton />
+      </div>
     </div>
   );
 };

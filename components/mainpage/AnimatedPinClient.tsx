@@ -38,15 +38,15 @@ export function AnimatedPinClient({ projects, usedFallback = false }: AnimatedPi
         <p className="mb-6 text-center text-sm text-sky-100">{t("fallbackNotice")}</p>
       ) : null}
 
-      <div className="h-full grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-28 items-center">
+      <div className="h-full grid grid-cols-1 lg:grid-cols-2 gap-48 items-center mt-10">
         {projects.map((p) => {
           const imgUrl = bestImageUrl(p.image ?? null, baseUrl);
           const pinHref = p.liveUrl ?? `/${locale}/projects/${p.slug}`;
 
           return (
             <PinContainer key={p.id} title={p.title} href={pinHref}>
-              <div className="flex flex-col p-4 tracking-tight text-cyan-300 w-[20rem] h-80 lg:w-[24rem] lg:h-88">
-                <h3 className="max-w-xs pb-2 m-0 font-bold text-base text-accent dark:text-accentDark">
+              <div className="flex flex-col p-4 tracking-tight text-cyan-300 w-[20rem] h-110 lg:w-[24rem]">
+                <h3 className="max-w-xs pb-2 m-0 font-bold text-base">
                   {p.title}
                 </h3>
 
