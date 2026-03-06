@@ -143,7 +143,7 @@ export default function FaqSection() {
                       >
                         <div className="flex items-center gap-3">
                           <FiMessageSquare className="w-5 h-5 text-sky-300" aria-hidden />
-                          <span className="text-slate-100">{it.q}</span>
+                          <span className="text-cyan-400">{it.q}</span>
                         </div>
                         <div className="flex items-center">
                           <motion.span aria-hidden className="text-sky-200 transform transition-transform duration-200">
