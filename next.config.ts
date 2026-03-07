@@ -7,29 +7,30 @@ const withNextIntl = createNextIntlPlugin();
 const isDev = process.env.NODE_ENV === "development";
 const allowLocalImages = process.env.ALLOW_LOCAL_IMAGES === "true";
 
-const STRAPI_HOST = process.env.STRAPI_HOST ?? "localhost";
+const STRAPI_HOST = process.env.STRAPI_HOST ?? "api.hedgehogwebdev.com";
 const STRAPI_PORT = process.env.STRAPI_PORT ?? "1337";
 
 const remotePatterns: RemotePattern[] = [];
 
-// ✅ Local patterns (dev ili kad eksplicitno dozvoliš)
+// Ako koristiš lokalni Strapi
 if (isDev || allowLocalImages) {
-  remotePatterns.push({
-    protocol: "http",
-    hostname: "localhost",
-    port: STRAPI_PORT,
-    pathname: "/uploads/**",
-  });
-
-  remotePatterns.push({
-    protocol: "http",
-    hostname: "127.0.0.1",
-    port: STRAPI_PORT,
-    pathname: "/uploads/**",
-  });
+  remotePatterns.push(
+    {
+      protocol: "http",
+      hostname: "localhost",
+      port: STRAPI_PORT,
+      pathname: "/uploads/**",
+    },
+    {
+      protocol: "http",
+      hostname: "127.0.0.1",
+      port: STRAPI_PORT,
+      pathname: "/uploads/**",
+    }
+  );
 }
 
-// ✅ Prod Strapi domen (ako nije lokalni)
+// Ako STRAPI_HOST nije lokalni, dodaj ga kao produkcioni host
 if (!["localhost", "127.0.0.1"].includes(STRAPI_HOST)) {
   remotePatterns.push({
     protocol: "https",
@@ -38,7 +39,7 @@ if (!["localhost", "127.0.0.1"].includes(STRAPI_HOST)) {
   });
 }
 
-// ✅ Cloudinary
+// Cloudinary
 remotePatterns.push({
   protocol: "https",
   hostname: "res.cloudinary.com",
