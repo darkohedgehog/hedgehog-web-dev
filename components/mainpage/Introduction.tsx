@@ -271,7 +271,7 @@ const SkeletonFour = () => {
 
       <motion.div
         variants={second}
-        className="h-full w-1/3 rounded-2xl bg-white p-4 dark:bg-black dark:border-white/10 border border-neutral-200 flex flex-col items-center justify-center"
+        className="h-full w-1/3 rounded-2xl p-4 bg-black border-white/10 border flex flex-col items-center justify-center"
       >
         <Image
           src="/assets/nextjs-svgrepo.svg"
@@ -334,7 +334,7 @@ const SkeletonFive = () => {
 
       <motion.div
         variants={variantsSecond}
-        className="flex flex-row rounded-full border border-neutral-100 dark:border-white/20 p-2 items-center justify-end space-x-2 w-3/4 ml-auto bg-black"
+        className="flex flex-row rounded-full border border-white/20 p-2 items-center justify-end space-x-2 w-3/4 ml-auto bg-black"
       >
         <p className="text-xs text-cyan-200">{t("title18")}</p>
         <div className="h-6 w-6 rounded-full bg-linear-to-r from-pink-500 to-violet-500 shrink-0" />
