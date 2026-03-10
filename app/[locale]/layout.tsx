@@ -40,16 +40,49 @@ export async function generateMetadata({
   const locale = (SUPPORTED_LOCALES.includes(raw as Locale) ? (raw as Locale) : DEFAULT_LOCALE);
 
   return {
-    title: {
-      default: "Hedgehog Web Dev",
-      template: "%s | Hedgehog Web Dev",
-    },
+  title: {
+    default: "Hedgehog Web Dev",
+    template: "%s | Hedgehog Web Dev",
+  },
+  description:
+    locale === "hr"
+      ? "Profesionalna izrada web stranica, web aplikacija i web shopova (Next.js, React, SEO, brzina)."
+      : "Professional websites, web apps and e-commerce builds (Next.js, React, SEO, performance).",
+
+  alternates: buildAlternates(locale, "/"),
+
+  openGraph: {
+    title: "Hedgehog Web Dev",
     description:
       locale === "hr"
-        ? "Profesionalna izrada web stranica, web aplikacija i web shopova (Next.js, React, SEO, brzina)."
-        : "Professional websites, web apps and e-commerce builds (Next.js, React, SEO, performance).",
-    alternates: buildAlternates(locale, "/"), // canonical: /hr ili /en
-  };
+        ? "Profesionalna izrada web stranica i web aplikacija."
+        : "Professional websites and web apps.",
+
+    url: `https://www.hedgehogwebdev.com/${locale}`,
+    siteName: "Hedgehog Web Dev",
+    locale: locale === "hr" ? "hr_HR" : "en_US",
+    type: "website",
+
+    images: [
+      {
+        url: "https://www.hedgehogwebdev.com/social-media.png",
+        width: 1200,
+        height: 630,
+        alt: "Hedgehog Web Dev",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Hedgehog Web Dev",
+    description:
+      locale === "hr"
+        ? "Profesionalna izrada web stranica i web aplikacija."
+        : "Professional websites and web apps.",
+    images: ["https://www.hedgehogwebdev.com/social-media.png"],
+  },
+};
 }
 
 type Props = {

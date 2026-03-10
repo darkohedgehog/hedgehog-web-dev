@@ -84,23 +84,23 @@
         ]
       },
       "maintenance": {
-        "title": "Održavanje & savetovanje",
+        "title": "Održavanje & savjetovanje",
         "items": [
           "Održavanje i redovni update-i (Next/Node/Strapi/WP)",
           "Performance audit (Lighthouse, Core Web Vitals)",
           "Deploy & DevOps (VPS, Nginx, pm2, SSL)",
-          "Bezbednost, backup strategija i monitoring",
+          "Bezbjednost, backup strategija i monitoring",
           "Tehničke konsultacije + planiranje feature-a"
         ]
       },
       "powerbi": {
-        "title": "Power BI & Data izveštaji",
+        "title": "Power BI & Data izvještaji",
         "items": [
-          "Razvoj i održavanje BI rešenja za potrebe Supply Chain-a, prodaje i financija",
+          "Razvoj i održavanje BI rješenja za potrebe Supply Chain-a, prodaje i financija",
           "Rad na Azure Data Warehouse okruženju: ETL/procedure, transformacije podataka i optimizacija modela",
           "Dizajniranje i održavanje dimenzionih modela (fact/dimension tabele) prilagođene poslovnim procesima",
           "Razvoj i optimizacija DAX mera i kalkulacije u tabular modelima",
-          "Kreiranje i unapređenje Power BI izveštaja i dashboard-a za operativno i menadžersko izveštavanje",
+          "Kreiranje i unapređenje Power BI izvještaja i dashboard-a za operativno i menadžersko izveštavanje",
           "Suradnja sa poslovnim timovima na definisanju KPI-jeva i analitičkih zahtjeva"
         ]
       }
@@ -145,7 +145,7 @@
       "AboutSection": {
         "title1": "Stručni web razvoj za",
         "title2": "moderna rješenja",
-        "paragraph1": "S više od 15 godina iskustva kao izvršni menadžer u oblasti trgovine i financija, uz posvećenu godinu dana u web razvoju, nudim jedinstvenu kombinaciju stručnosti.",
+        "paragraph1": "S više od 15 godina iskustva kao izvršni menadžer u oblasti trgovine i financija, kao i posvećenost web razvoju, nudim jedinstvenu kombinaciju stručnosti.",
         "paragraph2": "Moj čvrst temelj u izvršnom menadžmentu izbrusio je moje vještine vođenja i strateškog planiranja, omogućujući mi da postignem uspješne rezultate u poslovnom svijetu.",
         "paragraph3": "Bio sam u vašim cipelama i razumijem potrebe tržišta, osiguravajući da mogu razumjeti i ispuniti vaše zahtjeve učinkovito.",
         "paragraph4": "U području web razvoja, moja strast dovela me do savladavanja raznih programskih jezika i okvira, uključujući HTML5, CSS3, JavaScript, React.js, Next.js i TailwindCSS za stilizaciju.",
