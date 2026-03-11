@@ -49,7 +49,7 @@ export const SocialBanner = ({
           className,
         )}
       >
-        <div className="mb-4 flex flex-row items-center sm:mb-0">
+        <div className="mb-4 flex flex-row gap-3 items-center sm:mb-0">
           {images.map((image) => (
             <div className="group relative -mr-4" key={image.name}>
               <div>
